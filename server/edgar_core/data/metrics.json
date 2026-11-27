@@ -1,0 +1,1487 @@
+{
+ "version": 1,
+ "note": "Standard analyst conventions. 'convention': 'standard' means one accepted formula; 'varies' means analysts differ, so state the choice in the answer. A definition in the question or the filing always overrides this catalogue. GENERAL RULE: when the company itself reports a derived metric or a component (its own Adjusted EBITDA, EBITDAR with a rent line, a comparable-sales figure, a restated prior year), use the company's reported figure rather than reconstructing it from other lines; reconstruct only when no reported figure exists, and say so.",
+ "metrics": [
+  {
+   "name": "days inventory outstanding",
+   "aliases": [
+    "DIO",
+    "inventory days",
+    "days of inventory"
+   ],
+   "formula": "365 x average inventory / cost of goods sold (fiscal year)",
+   "convention": "standard",
+   "averages": "inventory: average of opening and closing balance",
+   "includes": "",
+   "excludes": "",
+   "units": "days, 1 decimal",
+   "pitfalls": "Using year-end inventory instead of the average changes the answer by several days (Home Depot FY2024: 77.6 with average, 82.5 with year-end). Some analysts use 360 days; use 365 unless the question says otherwise.",
+   "category": "activity",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: DOH = days / inventory turnover, inventory turnover = COGS / average inventory. Identical to this formula.",
+   "definition": "Average number of days inventory is held before sale: days in the period divided by inventory turnover."
+  },
+  {
+   "name": "days sales outstanding",
+   "aliases": [
+    "DSO",
+    "receivable days",
+    "debtor days"
+   ],
+   "formula": "365 x average accounts receivable / revenue",
+   "convention": "standard",
+   "averages": "receivables: average of opening and closing",
+   "includes": "",
+   "excludes": "",
+   "units": "days, 1 decimal",
+   "pitfalls": "",
+   "category": "activity",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: DSO = days / receivables turnover, receivables turnover = revenue / average receivables. Identical.",
+   "definition": "Average number of days to collect receivables: days in the period divided by receivables turnover."
+  },
+  {
+   "name": "days payables outstanding",
+   "aliases": [
+    "DPO",
+    "payable days",
+    "creditor days"
+   ],
+   "formula": "365 x average accounts payable / cost of goods sold",
+   "convention": "standard",
+   "averages": "payables: average of opening and closing",
+   "includes": "",
+   "excludes": "",
+   "units": "days, 1 decimal",
+   "pitfalls": "",
+   "category": "activity",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: days / payables turnover with payables turnover = purchases / average payables, purchases = COGS + ending inventory - beginning inventory. This catalogue uses COGS in place of purchases (common practice; purchases are rarely disclosed and the difference is small unless inventory changed a lot). Say which was used.",
+   "definition": "Average number of days the company takes to pay suppliers."
+  },
+  {
+   "name": "cash conversion cycle",
+   "aliases": [
+    "CCC",
+    "net operating cycle"
+   ],
+   "formula": "DIO + DSO - DPO",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "days",
+   "pitfalls": "",
+   "category": "activity",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: cash conversion cycle = DOH + DSO - number of days of payables. Identical.",
+   "definition": "Days from paying for inventory to collecting cash from its sale."
+  },
+  {
+   "name": "inventory turnover",
+   "aliases": [
+    "inventory turns"
+   ],
+   "formula": "cost of goods sold / average inventory",
+   "convention": "standard",
+   "averages": "inventory: average of opening and closing",
+   "includes": "",
+   "excludes": "",
+   "units": "times, 2 decimals",
+   "pitfalls": "Use cost of goods sold (cost of sales), not revenue, and the average balance.",
+   "category": "activity",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: COGS / average inventory. Identical.",
+   "definition": "How many times inventory is sold and replaced in the period."
+  },
+  {
+   "name": "receivables turnover",
+   "aliases": [
+    "AR turnover"
+   ],
+   "formula": "revenue / average accounts receivable",
+   "convention": "standard",
+   "averages": "receivables: average",
+   "includes": "",
+   "excludes": "",
+   "units": "times",
+   "pitfalls": "",
+   "category": "activity",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: revenue / average receivables. Identical.",
+   "definition": "How many times receivables are collected in the period."
+  },
+  {
+   "name": "asset turnover",
+   "aliases": [],
+   "formula": "revenue / average total assets",
+   "convention": "standard",
+   "averages": "total assets: average",
+   "includes": "",
+   "excludes": "",
+   "units": "times",
+   "pitfalls": "",
+   "category": "activity",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: total asset turnover = revenue / average total assets. Identical.",
+   "definition": "Revenue generated per dollar of assets."
+  },
+  {
+   "name": "net working capital",
+   "aliases": [
+    "NWC",
+    "working capital"
+   ],
+   "formula": "current assets - current liabilities; operating NWC excludes cash and short-term debt",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "In cash-flow models an INCREASE in NWC is a cash outflow. Say which definition you used.",
+   "category": "activity",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques' defines working capital = current assets - current liabilities. The operating variant (excluding cash, short-term investments and short-term debt) is analyst practice for cash-flow work, e.g. the 'FCInv' and 'WCInv' in CFA Program Curriculum, Level II, Equity Valuation, reading 'Free Cash Flow Valuation'.",
+   "definition": "Current assets less current liabilities; operating working capital excludes cash and debt."
+  },
+  {
+   "name": "gross margin",
+   "aliases": [
+    "gross profit margin"
+   ],
+   "formula": "gross profit / revenue, both for the same period",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent, 1-2 decimals",
+   "pitfalls": "",
+   "category": "profitability",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: gross profit margin = gross profit / revenue. Identical.",
+   "definition": "Gross profit as a share of revenue."
+  },
+  {
+   "name": "operating margin",
+   "aliases": [
+    "EBIT margin"
+   ],
+   "formula": "operating income / revenue",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "",
+   "category": "profitability",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: operating profit margin = operating income / revenue. Identical.",
+   "definition": "Operating income as a share of revenue."
+  },
+  {
+   "name": "net margin",
+   "aliases": [
+    "net profit margin",
+    "net income margin"
+   ],
+   "formula": "net income attributable to the company / revenue",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "",
+   "category": "profitability",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: net profit margin = net income / revenue. This catalogue uses net income attributable to the company's shareholders when there is a non-controlling interest.",
+   "definition": "Net income as a share of revenue."
+  },
+  {
+   "name": "EBITDA",
+   "aliases": [],
+   "formula": "operating income + depreciation + amortization (from the cash-flow statement or the notes)",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "'Adjusted EBITDA' is company-defined: use the filing's own reconciliation and its line items when the question says Adjusted. Plain EBITDA from operating income excludes other income and equity-method income. EBITDA, or an 'EBITDA proxy' built from operating income plus D&A, is not cash flow: the D&A add-back reverses a non-cash charge and is not a cash inflow; say so whenever you bridge or explain a change in it. Give the numeric bridge (the change in each component) separately from management's qualitative explanation, and name every driver management states for the change (price, volume, mix, FX, costs, restructuring) rather than a selection.",
+   "category": "profitability",
+   "sources": "CFA Program Curriculum, Level II, Equity Valuation, reading 'Market-Based Valuation: Price and Enterprise Value Multiples': EBITDA = operating income (EBIT) + depreciation + amortization. Companies' non-GAAP 'Adjusted EBITDA' adds other items back; use the company's figure only when the question asks for it.",
+   "definition": "Earnings before interest, taxes, depreciation and amortization."
+  },
+  {
+   "name": "EBITDA margin",
+   "aliases": [],
+   "formula": "EBITDA / revenue",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "",
+   "category": "profitability",
+   "sources": "CFA Program Curriculum, Level II, Equity Valuation, reading 'Market-Based Valuation: Price and Enterprise Value Multiples' (EBITDA defined there); margin is EBITDA / revenue by analyst convention.",
+   "definition": "EBITDA as a share of revenue."
+  },
+  {
+   "name": "EBITDAR",
+   "aliases": [],
+   "formula": "EBITDA + rent. Use the company's own Adjusted EBITDAR reconciliation (earnings release exhibit 99.1 or 10-K MD&A) when it publishes one: its rent line is THE figure. Otherwise operating lease cost from the leases note. WHEN THE LEASES ARE FINANCING OBLIGATIONS (failed sale-leasebacks, common where a casino or retail operator has sold its properties to a real estate investment trust and leased them back), there is no rent expense line and 'rent' has several candidates: the scheduled annual lease payment from the leases note's payment table, the cash interest paid on the financing obligation, and any rent line the company itself uses in a non-GAAP reconciliation. These differ by 5-10%. State which one you used, show the main alternative, and prefer the scheduled payment when the question says 'rent obligations' (what the lease requires to be paid).",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "With financing-obligation leases the candidate 'rent' figures (scheduled lease payment, cash interest on the obligation, a company's own reconciliation line) differ by 5-10% and lead to different EBITDAR growth rates: this is a convention dispute, not a settled rule; the settled rule is to name the figure used and show the main alternative. Use get_table on the reconciliation or the lease-schedule table; do not assemble rent from several lines.",
+   "category": "profitability",
+   "sources": "No CFA definition. Rating-agency lease-adjusted methodologies (S&P Global Ratings, Moody's) and companies' own non-GAAP reconciliations.",
+   "definition": "EBITDA before rent (operating lease) expense, used where leases substitute for debt (casinos, airlines, retail)."
+  },
+  {
+   "name": "return on equity",
+   "aliases": [
+    "ROE"
+   ],
+   "formula": "net income / average shareholders' equity",
+   "convention": "standard",
+   "averages": "equity: average of opening and closing",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "",
+   "category": "profitability",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: ROE = net income / average total equity. Identical.",
+   "definition": "Net income earned per dollar of shareholders' equity."
+  },
+  {
+   "name": "return on assets",
+   "aliases": [
+    "ROA"
+   ],
+   "formula": "net income / average total assets",
+   "convention": "standard",
+   "averages": "total assets: average",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "",
+   "category": "profitability",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: ROA = net income / average total assets (a variant adds back after-tax interest). This catalogue uses the plain form.",
+   "definition": "Net income earned per dollar of assets."
+  },
+  {
+   "name": "return on invested capital",
+   "aliases": [
+    "ROIC"
+   ],
+   "formula": "NOPAT / average invested capital, where NOPAT = operating income x (1 - tax rate) and invested capital = total debt + equity - cash",
+   "convention": "varies",
+   "averages": "invested capital: average",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "",
+   "category": "profitability",
+   "sources": "CFA Program Curriculum, Level II, Corporate Issuers, reading 'Corporate Performance, Governance and Business Ethics' / Level I FSA 'Financial Analysis Techniques' (return on invested capital = NOPAT / average invested capital). Invested capital definitions vary (with or without cash and goodwill); this catalogue uses total debt + equity - cash unless the question or company defines it.",
+   "definition": "After-tax operating profit per dollar of debt plus equity capital."
+  },
+  {
+   "name": "effective tax rate",
+   "aliases": [
+    "ETR"
+   ],
+   "formula": "provision for income taxes / income before income taxes (continuing operations)",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent, 1 decimal",
+   "pitfalls": "Can be negative or above 100% when discrete items dominate (a large one-off tax charge or benefit on small pre-tax income); report it as the filing does and note why.",
+   "category": "profitability",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Analysis of Income Taxes'. CFA: effective tax rate = income tax expense / pretax income. Identical.",
+   "definition": "Income tax expense as a share of pre-tax income."
+  },
+  {
+   "name": "free cash flow",
+   "aliases": [
+    "FCF"
+   ],
+   "formula": "net cash provided by operating activities - purchases of property and equipment (capital expenditures)",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Some companies and questions also subtract capitalized software or intangible purchases, or finance-lease principal; state which lines you subtracted. 'Unlevered FCF' is a different, model-based measure (see unlevered free cash flow).",
+   "category": "cash flow",
+   "sources": "CFA defines free cash flow to the firm (FCFF = CFO + interest x (1 - t) - FCInv) and to equity (FCFE = CFO - FCInv + net borrowing) in CFA Program Curriculum, Level II, Equity Valuation, reading 'Free Cash Flow Valuation'. The plain 'free cash flow' used by companies and most analysts is CFO - capital expenditures, which is what this catalogue uses unless the question names FCFF or FCFE.",
+   "definition": "Cash from operations left after capital expenditure."
+  },
+  {
+   "name": "free cash flow margin",
+   "aliases": [
+    "FCF margin"
+   ],
+   "formula": "free cash flow / revenue",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "",
+   "category": "cash flow",
+   "sources": "No CFA definition. Analyst convention: free cash flow (CFO - capex) / revenue.",
+   "definition": "Free cash flow as a share of revenue."
+  },
+  {
+   "name": "capex intensity",
+   "aliases": [
+    "capital intensity"
+   ],
+   "formula": "capital expenditures / revenue, both for the same period. A GUIDED intensity uses guidance for both terms as issued on the same date: guided capex midpoint / guided revenue midpoint; never guided capex over actual revenue.",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "A ratio built from guidance takes both numerator and denominator from the same guidance (same earnings release); mixing a guided numerator with an actual or later denominator is a different, unlabelled ratio.",
+   "category": "cash flow",
+   "sources": "No CFA definition. Analyst convention: capital expenditures / revenue; for guided intensity, both from the same guidance issue (like-for-like ratio, as any guided margin is computed).",
+   "definition": "Capital expenditure as a share of revenue."
+  },
+  {
+   "name": "unlevered free cash flow",
+   "aliases": [
+    "UFCF",
+    "free cash flow to the firm",
+    "FCFF"
+   ],
+   "formula": "EBIT x (1 - tax rate) + depreciation and amortization + other non-cash charges (stock-based compensation is ADDED BACK, not subtracted) - capital expenditures - increase in net working capital. Equivalently EBITDA - tax on EBIT - capex - increase in NWC + SBC. When a question gives a 'change in NWC' figure from the cash-flow statement, use it with its sign (a negative line is a cash outflow). CHANGE IN NWC comes from the cash-flow statement ('changes in operating assets and liabilities', or the sum of the working-capital lines) for the base year, used with its sign; it is not recomputed from the balance sheet (current assets minus current liabilities) unless the question says so.",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Subtracting SBC as if it were cash is a desk variant; the textbook FCFF treats it as a non-cash charge and adds it back. State which you used.",
+   "category": "cash flow",
+   "sources": "CFA Program Curriculum, Level II, Equity Valuation, reading 'Free Cash Flow Valuation'. CFA: FCFF = EBIT x (1 - tax rate) + depreciation (and other non-cash charges) - FCInv - WCInv. Identical; stock-based compensation is a non-cash charge in that formula.",
+   "definition": "Cash flow available to all capital providers before financing: NOPAT plus D&A less capex and working-capital investment."
+  },
+  {
+   "name": "cash flow conversion",
+   "aliases": [
+    "FCF conversion"
+   ],
+   "formula": "free cash flow / net income (or / EBITDA, if the question says)",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "",
+   "category": "cash flow",
+   "sources": "No CFA definition. Analyst convention; the denominator (net income or EBITDA) varies by desk. State which.",
+   "definition": "Share of earnings that becomes free cash flow."
+  },
+  {
+   "name": "total debt",
+   "aliases": [
+    "gross debt"
+   ],
+   "formula": "short-term borrowings + current portion of long-term debt + long-term debt (+ finance lease liabilities)",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "operating lease liabilities, unless the question or the company's own definition includes them",
+   "units": "",
+   "pitfalls": "Say whether finance and operating leases are included; rating-agency style includes operating leases, most 10-K debt notes do not.",
+   "category": "leverage",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques' (solvency ratios use total debt = interest-bearing short-term and long-term debt). Whether finance lease liabilities are included varies; this catalogue includes them when the company presents them within debt, and says so.",
+   "definition": "Interest-bearing borrowings, short- and long-term."
+  },
+  {
+   "name": "net debt",
+   "aliases": [],
+   "formula": "total debt - cash and cash equivalents (and short-term investments, if the question or company definition includes them)",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "restricted cash, usually",
+   "units": "",
+   "pitfalls": "",
+   "category": "leverage",
+   "sources": "CFA Program Curriculum, Level II, Equity Valuation, reading 'Market-Based Valuation: Price and Enterprise Value Multiples' (net debt = total debt - cash and short-term investments, used in enterprise value). This catalogue subtracts cash and cash equivalents, and short-term investments only when the question or the company's definition includes them.",
+   "definition": "Total debt less cash and cash equivalents."
+  },
+  {
+   "name": "leverage ratio",
+   "aliases": [
+    "debt to EBITDA",
+    "gross leverage"
+   ],
+   "formula": "total debt / EBITDA (last twelve months)",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "x, 1-2 decimals",
+   "pitfalls": "",
+   "category": "leverage",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: debt-to-EBITDA = total debt / EBITDA. Identical, EBITDA over the last twelve months unless a fiscal year is named.",
+   "definition": "Total debt relative to EBITDA."
+  },
+  {
+   "name": "net leverage",
+   "aliases": [
+    "net debt to EBITDA"
+   ],
+   "formula": "net debt / EBITDA",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "x",
+   "pitfalls": "",
+   "category": "leverage",
+   "sources": "No CFA definition. Credit-agreement and rating-agency convention: net debt / EBITDA (CFA defines the gross version, debt-to-EBITDA, in CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques').",
+   "definition": "Net debt relative to EBITDA."
+  },
+  {
+   "name": "debt to equity",
+   "aliases": [
+    "D/E"
+   ],
+   "formula": "total debt / total shareholders' equity",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "x or percent",
+   "pitfalls": "",
+   "category": "leverage",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: debt-to-equity = total debt / total shareholders' equity. Identical.",
+   "definition": "Total debt relative to shareholders' equity."
+  },
+  {
+   "name": "interest coverage",
+   "aliases": [
+    "times interest earned",
+    "EBIT coverage"
+   ],
+   "formula": "EBIT (operating income) / interest expense",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "x",
+   "pitfalls": "Some use EBITDA / interest; say which. Use gross interest expense, not net of interest income, unless the question says net.",
+   "category": "leverage",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: interest coverage = EBIT / interest payments. Identical; whether EBIT is operating income or pre-tax income plus interest varies, this catalogue uses operating income.",
+   "definition": "Operating profit relative to interest expense."
+  },
+  {
+   "name": "fixed charge coverage ratio",
+   "aliases": [
+    "FCCR"
+   ],
+   "formula": "(EBIT + fixed charges) / (fixed charges + interest expense), where EBIT = operating income and fixed charges = operating lease / rent expense for the period (the lease note's operating lease cost, or rent expense). Report THIS as the headline; give any other definition (adding principal repayments, preferred dividends, or using EBITDA) only as a sensitivity if the question asks.",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Credit agreements define their own FCCR; if the question or filing gives a definition use it. Interest is gross interest expense, not net of interest income. Do not add finance lease interest twice.",
+   "category": "leverage",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: fixed charge coverage = (EBIT + lease payments) / (interest payments + lease payments). Identical. Credit agreements define their own versions; use the agreement's when the question is about a covenant.",
+   "definition": "Operating profit plus lease payments relative to interest plus lease payments."
+  },
+  {
+   "name": "current ratio",
+   "aliases": [],
+   "formula": "current assets / current liabilities",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "x, 2 decimals",
+   "pitfalls": "",
+   "category": "leverage",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: current ratio = current assets / current liabilities. Identical.",
+   "definition": "Current assets relative to current liabilities."
+  },
+  {
+   "name": "quick ratio",
+   "aliases": [
+    "acid test"
+   ],
+   "formula": "(cash + short-term investments + receivables) / current liabilities",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "x",
+   "pitfalls": "",
+   "category": "leverage",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques'. CFA: quick ratio = (cash + short-term marketable investments + receivables) / current liabilities. Identical.",
+   "definition": "Liquid current assets (cash, marketable securities, receivables) relative to current liabilities."
+  },
+  {
+   "name": "compound annual growth rate",
+   "aliases": [
+    "CAGR"
+   ],
+   "formula": "(ending value / beginning value) ^ (1 / n) - 1, where n is the number of years BETWEEN the two fiscal years (FY2021 to FY2024: n = 3; '2-year CAGR FY2023 to FY2025': n = 2)",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent, 2 decimals",
+   "pitfalls": "Counting the end-points as periods (n = 4 for 2021-2024) is the commonest error. For values in different fiscal calendars use each company's own fiscal years. For a company-adjusted series (EBITDAR, Adjusted EBITDA) use the company's own reported figure for each year from that year's release, unless a later filing restates it.",
+   "category": "growth",
+   "sources": "CFA Program Curriculum, Level I, Quantitative Methods, reading 'Rates and Returns' (compound growth rate). CFA: compound growth rate = (ending value / beginning value)^(1/n) - 1, n = number of periods between the two values. Identical.",
+   "definition": "The constant annual growth rate that takes the beginning value to the ending value over n years."
+  },
+  {
+   "name": "year-over-year growth",
+   "aliases": [
+    "YoY",
+    "growth rate"
+   ],
+   "formula": "(current period - prior period) / prior period",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "",
+   "category": "growth",
+   "sources": "No CFA definition. Arithmetic convention: (current - prior) / prior.",
+   "definition": "Change from the same period a year earlier, as a share of that earlier value."
+  },
+  {
+   "name": "basis points",
+   "aliases": [
+    "bps",
+    "bp"
+   ],
+   "formula": "1 basis point = 0.01 percentage point; difference between two rates in bps = (rate A - rate B) x 10,000 when rates are fractions, or x 100 when they are percentages",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "integer bps",
+   "pitfalls": "A margin going from 25.5% to 26.9% is a 140 bps change, not 1.4 bps.",
+   "category": "growth",
+   "sources": "Standard financial convention (used throughout the CFA curriculum, e.g. Fixed Income): 1 bp = 0.01 percentage point.",
+   "definition": "One hundredth of a percentage point."
+  },
+  {
+   "name": "percentage points",
+   "aliases": [
+    "pp",
+    "ppt"
+   ],
+   "formula": "arithmetic difference between two percentages",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "",
+   "category": "growth",
+   "sources": "Standard convention: a margin that goes from 10% to 12% rose 2 percentage points (200 bps), not 2 percent.",
+   "definition": "The arithmetic difference between two percentages."
+  },
+  {
+   "name": "beat or miss versus guidance",
+   "aliases": [
+    "beat/miss",
+    "guidance variance"
+   ],
+   "formula": "(actual - guidance point) / guidance point. The guidance point: the MIDPOINT of a guided range; the figure itself when guidance is one-sided or a single number ('at least 160', 'approximately $250 million', 'about 15%'); the low or high end only when the question names it. When a question offers two bases ('midpoint or floor'), apply each to the form of guidance it fits (range -> midpoint; 'at least X' -> X) and lead with that figure, showing the other beside it. Report the difference in both units asked (dollars/units and percent, or bps for margins).",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Report against the midpoint AND the range ends unless told which; name the release that gave the guidance and the one that gave the actual; use the exact figure from the financial statements, not the rounded headline. Guidance for store openings, capex and similar items is given in the earnings press release (8-K exhibit 99.1), rarely in the 10-K/10-Q body: read the exhibit.",
+   "category": "growth",
+   "sources": "No CFA definition. Sell-side convention (consensus and company commentary compare results with the midpoint of the guided range); confirmed as the rubric writers' practice across the Vals Finance Agent v1.1 and v2.1 and Big Finance Bench public sets (31 Oct 2026: eleven questions name a basis; midpoint by default, low/high end only when stated, the stated figure for one-sided guidance).",
+   "definition": "Actual result compared with the company's guided figure."
+  },
+  {
+   "name": "market capitalization",
+   "aliases": [
+    "market cap",
+    "equity value (market)"
+   ],
+   "formula": "share price x shares outstanding (basic shares from the latest 10-K/10-Q cover page, as of the cover-page date, unless the question says diluted)",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Share prices are not in SEC filings: available only in extended mode via price_history, and reported under non-SEC sources.",
+   "category": "valuation",
+   "sources": "CFA Program Curriculum, Level I, Equity Investments, reading 'Equity Valuation: Concepts and Basic Tools' and CFA Program Curriculum, Level II, Equity Valuation, reading 'Market-Based Valuation: Price and Enterprise Value Multiples': market value of equity = share price x number of shares outstanding. Which share count (cover page basic vs diluted) is analyst convention; this catalogue uses the cover-page basic count unless the question says diluted.",
+   "definition": "Share price times shares outstanding."
+  },
+  {
+   "name": "enterprise value",
+   "aliases": [
+    "EV"
+   ],
+   "formula": "market capitalization + total debt + preferred stock + non-controlling interest - cash and cash equivalents. When a question says to treat operating leases as debt-like, add BOTH the current and the non-current operating lease liabilities from the balance sheet (and finance lease liabilities only if they are not already inside total debt); do not add lease expense or right-of-use assets.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Say whether operating leases and short-term investments are included. Lease-adjusted EV: current + non-current operating lease liabilities, nothing else; mixing in finance leases already counted in debt double-counts. In the agent, use build_ev, which assembles every component from the balance sheet at the stated date.",
+   "category": "valuation",
+   "sources": "CFA Program Curriculum, Level II, Equity Valuation, reading 'Market-Based Valuation: Price and Enterprise Value Multiples'. CFA: EV = market value of common equity + market value of preferred stock + market value of debt + minority interest - cash and short-term investments. Identical, with book debt in place of market value of debt (standard practice when debt is not traded).",
+   "definition": "Market value of the whole firm: equity plus debt and other claims, less cash."
+  },
+  {
+   "name": "EV to EBITDA",
+   "aliases": [
+    "EV/EBITDA",
+    "EBITDA multiple"
+   ],
+   "formula": "enterprise value / EBITDA (last twelve months or the fiscal year named)",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "x, 1 decimal",
+   "pitfalls": "",
+   "category": "valuation",
+   "sources": "CFA Program Curriculum, Level II, Equity Valuation, reading 'Market-Based Valuation: Price and Enterprise Value Multiples'. CFA: EV/EBITDA, trailing or forward as stated. Identical.",
+   "definition": "Enterprise value relative to EBITDA."
+  },
+  {
+   "name": "price to earnings",
+   "aliases": [
+    "P/E",
+    "PE ratio"
+   ],
+   "formula": "share price / diluted earnings per share (trailing or forward as named)",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "x",
+   "pitfalls": "",
+   "category": "valuation",
+   "sources": "CFA Program Curriculum, Level II, Equity Valuation, reading 'Market-Based Valuation: Price and Enterprise Value Multiples'. CFA: P/E = price / EPS, trailing (last four quarters, diluted) or forward. Identical.",
+   "definition": "Share price relative to earnings per share."
+  },
+  {
+   "name": "dividend payout ratio",
+   "aliases": [
+    "payout ratio"
+   ],
+   "formula": "dividends paid (cash-flow statement) / net income attributable to the company; or dividends per share / diluted EPS",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "Buybacks are a separate 'total payout' measure; say which you report.",
+   "category": "valuation",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Financial Analysis Techniques' and 'Equity Valuation' readings. CFA: dividend payout ratio = common dividends / net income attributable to common shares. Identical; the per-share variant is equivalent.",
+   "definition": "Share of earnings paid out as dividends."
+  },
+  {
+   "name": "dividend yield",
+   "aliases": [],
+   "formula": "annual dividends per share / share price",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent",
+   "pitfalls": "",
+   "category": "valuation",
+   "sources": "CFA Program Curriculum, Level I, Equity Investments, reading 'Equity Valuation: Concepts and Basic Tools'. CFA: dividend yield = annual dividends per share / price. Identical.",
+   "definition": "Annual dividends per share relative to the share price."
+  },
+  {
+   "name": "earnings per share",
+   "aliases": [
+    "EPS",
+    "diluted EPS"
+   ],
+   "formula": "net income attributable to common shareholders / weighted-average diluted shares; use the figure the filing reports",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "'Adjusted EPS' is company-defined: use the filing's reconciliation. Reported EPS is rounded to the cent, so EPS growth computed from reported EPS differs slightly from net income divided by weighted-average shares; say which you used and that reported EPS is rounded. When EPS growth and net income growth differ, the weighted-average share count explains the gap: a falling diluted count raises EPS, a rising one dilutes it.",
+   "category": "valuation",
+   "sources": "CFA Program Curriculum, Level I, Financial Statement Analysis, reading 'Analyzing Income Statements' (earnings per share). CFA: basic EPS = (net income - preferred dividends) / weighted average common shares; diluted EPS adds dilutive securities. Use the filing's reported figure.",
+   "definition": "Net income available to common shareholders per weighted-average share."
+  },
+  {
+   "name": "shares outstanding",
+   "aliases": [
+    "share count"
+   ],
+   "formula": "the number on the cover page of the latest 10-K or 10-Q, by class, as of the date stated there; report to the share",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Do not round to millions; list every class the cover page lists, including small or zero-balance classes.",
+   "category": "valuation",
+   "sources": "SEC Regulation S-K Item (cover page of Forms 10-K/10-Q, shares outstanding as of the latest practicable date) and the balance sheet. CFA uses 'number of shares outstanding' in market value of equity (CFA Program Curriculum, Level I, Equity Investments, reading 'Equity Valuation: Concepts and Basic Tools').",
+   "definition": "Issued shares held by investors (not treasury shares) at a stated date."
+  },
+  {
+   "name": "implied equity value",
+   "aliases": [
+    "implied equity value of a transaction"
+   ],
+   "formula": "offer price per share x target shares outstanding (basic, from the cover page of the latest 10-K/10-Q before announcement), plus in-the-money options and RSUs via the treasury stock method if the question asks for fully diluted",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "",
+   "category": "deals",
+   "sources": "CFA Program Curriculum, Level II, Corporate Issuers, reading 'Mergers and Acquisitions' (takeover premium, valuation of the target). CFA: equity value of the target = offer price x shares (diluted, when options are in the money). Identical.",
+   "definition": "Value of the target's equity at the offer price."
+  },
+  {
+   "name": "implied enterprise value",
+   "aliases": [
+    "implied transaction value",
+    "implied EV"
+   ],
+   "formula": "implied equity value + total debt + preferred + non-controlling interest - cash, all from the target's latest balance sheet before announcement",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "",
+   "category": "deals",
+   "sources": "CFA Program Curriculum, Level II, Corporate Issuers, reading 'Mergers and Acquisitions' (takeover premium, valuation of the target) and CFA Program Curriculum, Level II, Equity Valuation, reading 'Market-Based Valuation: Price and Enterprise Value Multiples' (enterprise value definition). Identical.",
+   "definition": "Value of the whole target at the offer price: implied equity value plus net debt and other claims."
+  },
+  {
+   "name": "acquisition premium",
+   "aliases": [
+    "takeover premium",
+    "offer premium"
+   ],
+   "formula": "offer price per share / unaffected share price - 1, where the unaffected price is the close on the last trading day before the announcement (or the date the question names, e.g. 30-day VWAP)",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "The unaffected price is market data: extended mode only. Merger 8-Ks and proxy statements often state the premium themselves; quote the filing's figure when it exists.",
+   "category": "deals",
+   "sources": "CFA Program Curriculum, Level II, Corporate Issuers, reading 'Mergers and Acquisitions' (takeover premium, valuation of the target). CFA: takeover premium = (deal price - unaffected target price) / unaffected target price, unaffected = before the announcement (or before rumours). Identical.",
+   "definition": "Offer price over the target's unaffected share price."
+  },
+  {
+   "name": "sources and uses",
+   "aliases": [
+    "LBO sources and uses"
+   ],
+   "formula": "uses = purchase of equity (offer price x shares) + refinancing of existing debt + transaction fees; sources = new debt tranches + sponsor equity, where sponsor equity is the balancing figure (uses - new debt)",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "",
+   "category": "deals",
+   "sources": "No CFA definition. Leveraged-finance convention (investment banking practice, e.g. Rosenbaum & Pearl, 'Investment Banking', LBO analysis chapter).",
+   "definition": "Table showing where deal funding comes from and what it pays for."
+  },
+  {
+   "name": "discounted cash flow",
+   "aliases": [
+    "DCF"
+   ],
+   "formula": "enterprise value = sum over years t = 1..n of UFCF_t / (1 + WACC)^t + terminal value / (1 + WACC)^n; equity value = EV - net debt; per-share value = equity value / diluted shares. DEFAULT MECHANICS unless the question says otherwise: end-of-year discounting (the first projected year is t = 1; no mid-year convention); the terminal value is computed on the final projected year's figures and discounted n full years; projections grow from the last actual year; percentages held 'constant as % of revenue' are the last actual year's ratios carried at full precision, never re-typed rounded.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Year-end discounting (t = 1 for the first projected year) unless mid-year convention is stated. Hold the question's assumptions exactly; do not add your own. Use calculate with a script so every step is recorded. Mid-year discounting, subtracting SBC, or discounting the terminal value n - 0.5 years each move EV by 0.5-2%, enough to miss a graded figure; use the defaults above and name any departure. In the agent, use the calculate functions ufcf / npv / terminal_exit / terminal_growth / dcf_ev, which implement exactly these mechanics.",
+   "category": "modelling",
+   "sources": "CFA Program Curriculum, Level II, Equity Valuation, reading 'Free Cash Flow Valuation'. CFA: firm value = sum of FCFF_t / (1 + WACC)^t + terminal value / (1 + WACC)^n, end-of-period discounting. Identical. Mid-year convention is an investment-banking variant (Rosenbaum & Pearl), not the default here.",
+   "definition": "Value today of forecast free cash flows plus a terminal value, discounted at the cost of capital."
+  },
+  {
+   "name": "terminal value, exit multiple method",
+   "aliases": [
+    "exit multiple"
+   ],
+   "formula": "final projected year's EBITDA x exit multiple, discounted n full years (the same discount factor as the final year's cash flow)",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "",
+   "category": "modelling",
+   "sources": "CFA Program Curriculum, Level II, Equity Valuation, reading 'Market-Based Valuation: Price and Enterprise Value Multiples' and CFA Program Curriculum, Level II, Equity Valuation, reading 'Free Cash Flow Valuation' (terminal value via a price or EV multiple). Identical.",
+   "definition": "Terminal value as a multiple of terminal-year EBITDA."
+  },
+  {
+   "name": "terminal value, perpetual growth method",
+   "aliases": [
+    "Gordon growth",
+    "perpetuity growth"
+   ],
+   "formula": "UFCF_n x (1 + g) / (WACC - g), discounted from year n",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Use the final projected year's cash flow grown one year; WACC must exceed g.",
+   "category": "modelling",
+   "sources": "CFA Program Curriculum, Level II, Equity Valuation, reading 'Free Cash Flow Valuation'. CFA: terminal value_n = FCFF_(n+1) / (WACC - g) = FCFF_n x (1 + g) / (WACC - g). Identical.",
+   "definition": "Terminal value as a growing perpetuity of the final-year cash flow."
+  },
+  {
+   "name": "weighted average cost of capital",
+   "aliases": [
+    "WACC"
+   ],
+   "formula": "E/(D+E) x cost of equity + D/(D+E) x cost of debt x (1 - tax rate); when a question gives WACC, use it as given",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "",
+   "category": "modelling",
+   "sources": "CFA Program Curriculum, Level I, Corporate Issuers, reading 'Cost of Capital: Foundational Topics'. CFA: WACC = w_d x r_d x (1 - t) + w_p x r_p + w_e x r_e. Identical (preferred omitted when none).",
+   "definition": "Average after-tax cost of the firm's debt and equity, weighted by market values."
+  },
+  {
+   "name": "take rate",
+   "aliases": [
+    "monetization rate",
+    "payments-only take rate",
+    "core net take rate",
+    "payments-only yield",
+    "net take rate"
+   ],
+   "formula": "revenue / gross bookings (or gross merchandise value), for the same period and segment",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "percent, 2 decimals",
+   "pitfalls": "Use the company's own definition of gross bookings; compute per segment if asked. 'Payments-only', 'core' or 'processing' take rate: use only the payment-processing revenue and its costs (processing, interchange and network fees), leaving out other financial-technology lines such as lending or capital, payroll, banking or subscription fees. Look for that split with list_line_items (search 'payment' or 'processing'), in the revenue note, and in the earnings releases (8-K item 2.02, exhibit 99.1) and investor presentations, where companies often split gross profit into payments and non-payments when the 10-K does not; only if none of them splits it, say so, give the broader figure as the second value and name what it includes.",
+   "category": "operating",
+   "sources": "No CFA definition. Company and industry convention (marketplaces, payments); use the company's definition when it publishes one.",
+   "definition": "Revenue as a share of the gross value transacted on a platform."
+  },
+  {
+   "name": "average revenue per user",
+   "aliases": [
+    "ARPU",
+    "ARPM",
+    "average revenue per membership"
+   ],
+   "formula": "revenue / average paying members (or users) for the period, usually monthly; company-defined",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Companies report regional and global versions (Netflix: global 'average monthly revenue per paying membership' differs from the UCAN figure); use the global, company-level figure unless a region is named.",
+   "category": "operating",
+   "sources": "No CFA definition. Company-defined KPI; definitions (paying vs total users, monthly vs annual) differ by company. Use the filing's definition.",
+   "definition": "Revenue per user or member over a period."
+  },
+  {
+   "name": "same-store sales",
+   "aliases": [
+    "comparable sales",
+    "comps"
+   ],
+   "formula": "company-defined growth in sales at locations open at least a year (definitions differ by company and by week count); use the filing's figure, never recompute",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "",
+   "category": "operating",
+   "sources": "No CFA definition. Company-defined KPI (comparable-store sales); week counts and store sets differ by company. Never recompute; use the filing's figure.",
+   "definition": "Growth in sales at locations open for at least a year."
+  },
+  {
+   "name": "guidance midpoint",
+   "aliases": [],
+   "formula": "(low end + high end) / 2 of a guided range",
+   "convention": "standard",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "",
+   "category": "growth",
+   "sources": "No CFA definition. Arithmetic convention: (low + high) / 2.",
+   "definition": "Middle of a guided range."
+  },
+  {
+   "name": "shareholder distribution coverage",
+   "aliases": [
+    "distribution coverage",
+    "buyback and dividend coverage",
+    "FCF coverage of distributions",
+    "funding gap"
+   ],
+   "formula": "free cash flow / (gross cash share repurchases + cash dividends paid), both from the cash-flow statement for the same fiscal year; funding gap = free cash flow - distributions",
+   "convention": "standard",
+   "averages": "",
+   "includes": "gross repurchases as paid in cash (not net of issuance), dividends paid",
+   "excludes": "proceeds from share issuance, borrowing and investment-security flows",
+   "units": "x or %, 2 decimals; gap in currency",
+   "pitfalls": "A shortfall (coverage below 1.0x) does not identify its funding source: the cash-flow statement shows borrowing, debt repayment, investment sales and the change in cash together, so do not say the gap 'was funded by' any one of them. Use gross repurchases unless the question says net.",
+   "category": "cash flow",
+   "sources": "No CFA definition. Analyst practice for capital-return coverage (free cash flow as defined in this catalogue over shareholder distributions); the funding-source caution follows from the cash-flow statement's structure (CFA Program Curriculum, Level I, Financial Statement Analysis, 'Understanding Cash Flow Statements').",
+   "definition": "How far the year's free cash flow covers cash returned to shareholders through buybacks and dividends."
+  },
+  {
+   "name": "CDS default payout",
+   "aliases": [
+    "protection payout",
+    "gross protection payout",
+    "default payout",
+    "recovery sensitivity",
+    "loss given default on sold protection"
+   ],
+   "formula": "notional x (1 - recovery rate) for each contract on which protection was SOLD; sensitivity per 10-point fall in recovery = notional x 0.10",
+   "convention": "standard",
+   "averages": "",
+   "includes": "only sold-protection contracts on the named reference and maturity",
+   "excludes": "upfront premiums received, accrued coupon, existing fair value marks, and any offsetting bought protection or other hedges",
+   "units": "currency, same as the notional",
+   "pitfalls": "State all three: (1) the figure is GROSS, before upfront premiums, accrued coupon, the contract's existing mark and any offsetting bought protection or hedges the fund holds; (2) the recovery rates are scenario assumptions, not disclosed figures; (3) it is therefore not the fund's net NAV impact. A negative fair value is a current mark, not a default payout.",
+   "category": "credit",
+   "sources": "No CFA definition. ISDA Credit Derivatives Definitions (cash settlement: notional x (1 - final price)); the gross-versus-net caution follows from N-PORT reporting each derivative separately (SEC Form N-PORT, Part C item C.11).",
+   "definition": "What the seller of credit protection would pay on a credit event of the reference entity, before any offsets."
+  },
+  {
+   "name": "CDS notional and fair value",
+   "aliases": [
+    "signed fair value",
+    "CDS notional",
+    "notional and fair value",
+    "notional versus fair value",
+    "notional vs fair value",
+    "sell-protection rows",
+    "sold protection notional"
+   ],
+   "formula": "aggregate notional = sum of the contracts' notional amounts (the reference principal); signed fair value = sum of the contracts' current marks, negative when the position is a liability to the fund",
+   "convention": "standard",
+   "averages": "",
+   "includes": "only the contracts the question isolates (reference, cleared or OTC, maturity, direction)",
+   "excludes": "other derivatives and the securities of the same issuer",
+   "units": "currency; fair value keeps its sign",
+   "pitfalls": "Notional is the reference principal on which payments are calculated, not what the fund would pay: on a credit event a protection seller pays notional x (1 - recovery), so notional is the maximum only at zero recovery. Fair value is the current mark (present value of expected protection payments less the coupons receivable, plus the effect of upfront amounts), so it is far smaller than notional and negative for a seller when the market spread exceeds the fixed coupon. Say both in these terms; never call notional 'the amount the fund would pay if the reference defaulted'.",
+   "category": "credit",
+   "sources": "No CFA definition. ISDA Credit Derivatives Definitions (notional as calculation amount; cash settlement notional x (1 - final price)); fair value per ASC 820 as reported in SEC Form N-PORT Part C and the schedule of investments.",
+   "definition": "For credit default swaps: the notional is the amount the contract's payments are calculated on; the fair value is what the contract is worth today."
+  },
+  {
+   "name": "net revenue",
+   "aliases": [
+    "net revenues",
+    "transaction-adjusted net revenue",
+    "revenue less transaction expenses",
+    "revenue less transaction costs"
+   ],
+   "formula": "Two legitimate meanings. (1) Accounting: the reported revenue line, already net of returns, discounts and promotions; many companies call their top line 'net revenue'. (2) Industry analysis of payments, remittance, marketplace, travel and brokerage companies: revenue minus the pass-through cost of each transaction (transaction expenses, processing or interchange costs, payout-partner fees, routing costs), the economic revenue the company keeps. When the company reports a line named net revenue, use it; when the question is about such a business and the company reports a transaction-expense line, the industry meaning applies: put revenue - transaction expenses in the headline row (first) and the reported revenue as the second row, both explained; a headline that uses reported revenue for such a company is the wrong way round.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Never rename the reported revenue as net revenue without saying the company reports it net. Find it with list_line_items (search the qualifier word, breakdowns on) before using a headline total. Transaction expenses usually sit on the income statement directly below revenue or in a cost-of-revenue note.",
+   "category": "operating",
+   "sources": "Company definitions in payments and remittance 10-Ks and earnings releases (transaction-adjusted or net revenue as a non-GAAP measure under SEC Regulation G); ASC 606 principal-versus-agent guidance for when revenue is reported gross or net.",
+   "definition": "Revenue after the costs passed through on each transaction, or the reported revenue line, depending on the industry convention."
+  },
+  {
+   "name": "transaction revenue",
+   "aliases": [
+    "transaction-based revenue",
+    "transaction revenues",
+    "merchant solutions revenue",
+    "payment processing revenue"
+   ],
+   "formula": "Revenue earned on payment or transaction volume (fees per transaction or a percentage of volume), excluding subscription, software, hardware, interest and other service revenue. Take it from the revenue-disaggregation note or a separate income-statement line.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Total revenue is not transaction revenue when the company also earns subscriptions, interest or services. Find it with list_line_items (search the qualifier word, breakdowns on) before using a headline total. Revenue breakdowns are dimensional facts (axis = product or service).",
+   "category": "operating",
+   "sources": "FASB Accounting Standards Codification (ASC) 606 disaggregation-of-revenue disclosures (ASC 606-10-50-5); payments and commerce company 10-Ks.",
+   "definition": "Revenue earned on transaction volume only."
+  },
+  {
+   "name": "payment volume",
+   "aliases": [
+    "total payment volume",
+    "TPV",
+    "gross payment volume",
+    "GPV",
+    "gross merchandise value",
+    "GMV",
+    "gross bookings"
+   ],
+   "formula": "The dollar value of transactions processed or sold through the platform in the period (a key operating metric, not revenue). It sits in MD&A key-metrics tables and earnings releases, not in the financial statements.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Each company defines it (with or without refunds, cross-border, held-for-sale items); use the company's own figure and definition. Volume is the denominator of a take rate, never revenue.",
+   "category": "operating",
+   "sources": "Company key-metric definitions in MD&A and earnings releases (SEC guidance on key performance indicators, Release 33-10751). Where the measure is non-GAAP, SEC Regulation G applies.",
+   "definition": "The value of transactions a platform handles, used as the base for take rates."
+  },
+  {
+   "name": "organic growth",
+   "aliases": [
+    "organic revenue growth",
+    "organic sales growth",
+    "core sales growth",
+    "core revenue growth",
+    "organic revenue",
+    "underlying growth"
+   ],
+   "formula": "Revenue growth excluding acquisitions and divestitures (both periods on the same perimeter) and usually excluding currency translation. Use the figure the company reports (earnings release or MD&A reconciliation). If you must compute: (current revenue - revenue from businesses acquired in the last 12 months - FX effect) / (prior revenue - revenue of businesses divested) - 1, and state each adjustment.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Total reported growth is not organic growth when there were deals or currency moves. Companies differ on whether price, 53rd weeks or hyperinflation are excluded; follow the company's definition and name it.",
+   "category": "growth",
+   "sources": "Non-GAAP measure under SEC Regulation G; company reconciliations in earnings releases and MD&A.",
+   "definition": "Growth from the business that existed in both periods, without deals or currency."
+  },
+  {
+   "name": "constant-currency growth",
+   "aliases": [
+    "constant currency growth",
+    "currency-neutral growth",
+    "FX-neutral growth",
+    "growth at constant exchange rates"
+   ],
+   "formula": "Current-period results translated at the prior period's exchange rates, compared with the prior period. Use the company's reported constant-currency figure.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Not the same as organic growth (acquisitions still count). Companies state the method in a footnote; quote it.",
+   "category": "growth",
+   "sources": "Non-GAAP measure under SEC Regulation G; company definitions in MD&A.",
+   "definition": "Growth with exchange-rate effects removed."
+  },
+  {
+   "name": "adjusted (non-GAAP) measure",
+   "aliases": [
+    "adjusted EBITDA",
+    "adjusted EPS",
+    "non-GAAP EPS",
+    "adjusted operating income",
+    "adjusted net income",
+    "non-GAAP operating income",
+    "adjusted earnings",
+    "non-GAAP gross profit",
+    "adjusted gross profit"
+   ],
+   "formula": "The company's own measure: the GAAP figure plus or minus the items in its reconciliation (stock comp, amortisation of acquired intangibles, restructuring, one-offs). Take the figure and its reconciliation from the earnings release (8-K exhibit 99.1) or the MD&A non-GAAP section; do not build your own adjusted figure unless the question defines the adjustments.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "GAAP and adjusted figures can differ by more than half; never answer an 'adjusted' or 'non-GAAP' question with the GAAP line, or the reverse. Guidance is often given on the adjusted basis only: match the basis of the guidance. Non-GAAP measures are usually not in XBRL; read the reconciliation table.",
+   "category": "profitability",
+   "sources": "SEC Regulation G and Item 10(e) of Regulation S-K (non-GAAP measures and the required reconciliation).",
+   "definition": "A company-defined measure reconciled to the nearest GAAP figure."
+  },
+  {
+   "name": "customer-funded R&D",
+   "aliases": [
+    "customer-funded research and development",
+    "contract R&D",
+    "customer-sponsored R&D",
+    "company-funded R&D",
+    "company-sponsored R&D",
+    "independent research and development",
+    "IR&D"
+   ],
+   "formula": "Government and defence contractors split R&D: customer-funded R&D is performed under contracts, billed to customers and recorded in cost of sales; company-funded (company-sponsored or independent, IR&D) R&D is the company's own spending, shown as an R&D expense line or within G&A. Removing 'R&D' from margins means the company-funded line unless the question says customer-funded too.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "The R&D expense line on the income statement is usually only the company-funded part; the customer-funded amount is disclosed in a note. State which you removed; if both readings are legitimate, give both.",
+   "category": "operating",
+   "sources": "Defence-contractor 10-K notes on research and development; FAR 31.205-18 (independent research and development costs). Where the measure is non-GAAP, SEC Regulation G applies.",
+   "definition": "R&D paid for by customers under contracts versus R&D the company funds itself."
+  },
+  {
+   "name": "backlog",
+   "aliases": [
+    "order backlog",
+    "funded backlog",
+    "unfunded backlog",
+    "remaining performance obligations",
+    "RPO",
+    "current RPO",
+    "cRPO"
+   ],
+   "formula": "Contracted work not yet recognised as revenue. Remaining performance obligations (RPO) are the ASC 606 disclosure in the revenue note; backlog is the company's own operating measure (MD&A) and may include unfunded or unexercised amounts. Current RPO = the part expected within 12 months.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Funded backlog (appropriated) and total backlog differ for government contractors; RPO and backlog differ for most companies. Name which one.",
+   "category": "operating",
+   "sources": "FASB Accounting Standards Codification (ASC) 606-10-50-13 (remaining performance obligations); company backlog definitions in MD&A.",
+   "definition": "Contracted revenue still to be recognised."
+  },
+  {
+   "name": "debt outstanding",
+   "aliases": [
+    "outstanding debt",
+    "principal outstanding",
+    "debt principal",
+    "face value of debt",
+    "aggregate principal amount",
+    "outstanding unsecured debt",
+    "unsecured debt outstanding",
+    "outstanding secured debt",
+    "notes outstanding",
+    "outstanding unsecured loans",
+    "outstanding loans",
+    "outstanding unsecured notes",
+    "outstanding notes"
+   ],
+   "formula": "The principal still owed on every borrowing at the date (all notes, loans, revolver drawings, commercial paper; current maturities included), from the debt note's table of instruments. Carrying value on the balance sheet is principal less unamortised discount and issuance costs.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Outstanding means all of it, not only the tranches a transaction touched (tendered, exchanged or refinanced notes are a subset). Principal and carrying value differ; say which. Finance leases are debt-like but often listed separately. In an exchange offer or tender, 'outstanding before the deal' includes the notes holders did not tender; give the whole outstanding amount first and the tendered subset as the second value if the question could mean either.",
+   "category": "leverage",
+   "sources": "FASB Accounting Standards Codification (ASC) 470 and ASC 835-30 (presentation of debt and issuance costs); the debt note in the 10-K.",
+   "definition": "The principal amount owed on all borrowings at a date."
+  },
+  {
+   "name": "annual recurring revenue",
+   "aliases": [
+    "ARR",
+    "net revenue retention",
+    "NRR",
+    "net dollar retention",
+    "NDR",
+    "dollar-based net retention"
+   ],
+   "formula": "Company-defined subscription metrics in MD&A or earnings releases: ARR = annualised value of recurring contracts at a date; net revenue retention = this period's recurring revenue from customers who existed a year ago / their revenue a year ago.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Not GAAP and not in XBRL; definitions vary (contracted versus run-rate, which customers count). Use the company's figure and quote its definition.",
+   "category": "operating",
+   "sources": "Company key-metric definitions (SEC Release 33-10751 on key performance indicators). Where the measure is non-GAAP, SEC Regulation G applies.",
+   "definition": "Subscription revenue run-rate and the share kept and expanded from existing customers."
+  },
+  {
+   "name": "funds from operations",
+   "aliases": [
+    "FFO",
+    "Nareit FFO",
+    "adjusted funds from operations",
+    "AFFO",
+    "core FFO",
+    "FFO per share"
+   ],
+   "formula": "REITs: FFO = net income + real estate depreciation and amortisation - gains (+ losses) on property sales + impairments of depreciable real estate, with adjustments for unconsolidated partnerships (Nareit definition). AFFO and core FFO are company-defined (typically less recurring capex, straight-line rent; plus stock comp). Use the company's reconciliation.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "EPS is not the earnings measure REITs are valued on; FFO per share uses diluted shares and units as the company states.",
+   "category": "profitability",
+   "sources": "Nareit, 'Funds From Operations White Paper' (2018 restatement); REIT 10-K and supplemental reconciliations. Where the measure is non-GAAP, SEC Regulation G applies.",
+   "definition": "REIT earnings with real estate depreciation and property gains removed."
+  },
+  {
+   "name": "net operating income",
+   "aliases": [
+    "NOI",
+    "same-property NOI",
+    "same-store NOI",
+    "cash NOI"
+   ],
+   "formula": "Property revenues minus property operating expenses (before depreciation, interest, corporate G&A). Same-property NOI covers only properties owned in both periods. Use the company's reconciliation.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Company definitions differ (cash versus straight-line rent, which properties are 'same'). Quote the definition.",
+   "category": "profitability",
+   "sources": "REIT supplemental disclosures; Nareit guidance. Where the measure is non-GAAP, SEC Regulation G applies.",
+   "definition": "Property-level profit before depreciation, interest and overhead."
+  },
+  {
+   "name": "combined ratio",
+   "aliases": [
+    "loss ratio",
+    "expense ratio",
+    "underlying combined ratio",
+    "net premiums written",
+    "net premiums earned",
+    "premiums written",
+    "premiums earned"
+   ],
+   "formula": "Property and casualty insurers: loss ratio = losses and loss adjustment expenses / net premiums earned; expense ratio = underwriting expenses / net premiums earned (some insurers use premiums written for the expense ratio); combined ratio = loss ratio + expense ratio. Below 100% means an underwriting profit. Premiums written = policies sold in the period; premiums earned = the part of premiums that relates to the period.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Use the company's reported ratios and definitions; 'underlying' or 'accident-year' versions exclude catastrophes and prior-year reserve development. Written and earned premiums differ.",
+   "category": "profitability",
+   "sources": "Statutory accounting (NAIC) and GAAP insurance disclosures; insurer 10-K MD&A. Where the measure is non-GAAP, SEC Regulation G applies.",
+   "definition": "Insurance losses and expenses as a share of premiums earned."
+  },
+  {
+   "name": "net interest margin",
+   "aliases": [
+    "NIM",
+    "net interest income",
+    "efficiency ratio",
+    "tangible book value",
+    "tangible book value per share",
+    "CET1 ratio"
+   ],
+   "formula": "Banks: net interest income = interest income - interest expense; NIM = net interest income (often fully taxable-equivalent) / average interest-earning assets; efficiency ratio = noninterest expense / (net interest income + noninterest income); tangible book value = common equity - goodwill - other intangibles (net of related deferred tax as the bank states). Use the bank's reported figures.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Banks have no gross margin; revenue = net interest income + noninterest income. NIM uses average balances and may be taxable-equivalent; say which.",
+   "category": "profitability",
+   "sources": "Bank 10-K MD&A and Basel III / US capital rules (CET1); FFIEC call report definitions. Where the measure is non-GAAP, SEC Regulation G applies.",
+   "definition": "Bank profitability and capital measures."
+  },
+  {
+   "name": "unit revenue (airlines)",
+   "aliases": [
+    "RASM",
+    "PRASM",
+    "TRASM",
+    "CASM",
+    "CASM-ex",
+    "CASM ex-fuel",
+    "load factor",
+    "available seat miles",
+    "ASM",
+    "revenue passenger miles",
+    "RPM",
+    "passenger yield"
+   ],
+   "formula": "Airlines: ASM = seats x miles flown; RPM = paying passengers x miles; load factor = RPM / ASM; PRASM = passenger revenue / ASM; TRASM = total revenue / ASM; yield = passenger revenue / RPM; CASM = operating expenses / ASM; CASM-ex excludes fuel and special items as the airline defines. Use the airline's reported operating statistics.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Recomputing from rounded inputs drifts; use the reported figure when the question relies on it. CASM-ex definitions differ between airlines.",
+   "category": "operating",
+   "sources": "US DOT Form 41 traffic statistics; airline 10-K operating statistics tables. Where the measure is non-GAAP, SEC Regulation G applies.",
+   "definition": "Airline revenue and cost per unit of capacity."
+  },
+  {
+   "name": "revenue per available room",
+   "aliases": [
+    "RevPAR",
+    "ADR",
+    "average daily rate",
+    "occupancy",
+    "hotel occupancy"
+   ],
+   "formula": "Hotels: occupancy = rooms sold / rooms available; ADR = room revenue / rooms sold; RevPAR = room revenue / rooms available = ADR x occupancy. Usually reported for comparable (system-wide or owned) hotels.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Company definitions of comparable hotels and constant-currency RevPAR differ; quote them.",
+   "category": "operating",
+   "sources": "STR (Smith Travel Research) industry definitions; hotel company 10-Ks. Where the measure is non-GAAP, SEC Regulation G applies.",
+   "definition": "Hotel room revenue per room available."
+  },
+  {
+   "name": "assets under management",
+   "aliases": [
+    "AUM",
+    "fee-earning AUM",
+    "fee-paying AUM",
+    "fee-related earnings",
+    "FRE",
+    "distributable earnings"
+   ],
+   "formula": "Asset managers: AUM = market value of assets managed; fee-earning AUM = the part on which management fees are charged; fee-related earnings and distributable earnings are company-defined non-GAAP profit measures. Use the company's figures and definitions.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "AUM and fee-earning AUM can differ widely (uncalled commitments, non-fee capital). Not in XBRL; read MD&A or the earnings release.",
+   "category": "operating",
+   "sources": "Asset manager 10-K MD&A definitions; SEC Regulation G for the earnings measures.",
+   "definition": "Assets managed and the earnings measures built on them."
+  },
+  {
+   "name": "system-wide sales",
+   "aliases": [
+    "systemwide sales",
+    "system sales",
+    "average unit volume",
+    "AUV",
+    "franchise sales"
+   ],
+   "formula": "Franchisors and restaurant chains: system-wide sales = sales of all restaurants in the system, company-operated and franchised (franchised sales are not the company's revenue); average unit volume = sales / number of restaurants open for the full period, as the company defines.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Company revenue is not system-wide sales. AUV can be derived (system sales / restaurant count) when not reported; say so.",
+   "category": "operating",
+   "sources": "Franchisor 10-K MD&A and franchise disclosure documents. Where the measure is non-GAAP, SEC Regulation G applies.",
+   "definition": "Sales of all restaurants under a brand, and sales per restaurant."
+  },
+  {
+   "name": "restaurant-level margin",
+   "aliases": [
+    "restaurant-level operating margin",
+    "restaurant-level profit",
+    "four-wall margin",
+    "contribution margin",
+    "segment profit",
+    "segment operating income"
+   ],
+   "formula": "Company-defined profit before corporate overhead: restaurant-level margin = restaurant sales - food, labour, occupancy and other restaurant operating costs, divided by restaurant sales; segment profit or operating income = the measure the company reports for each segment under ASC 280. Use the company's own figure and reconciliation.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "These are not GAAP operating margin and are defined differently by each company; never substitute operating income. Quote the definition.",
+   "category": "profitability",
+   "sources": "ASC 280 (segment reporting); SEC Regulation G for non-GAAP versions.",
+   "definition": "Profit of a unit or segment before corporate costs, as the company defines it."
+  },
+  {
+   "name": "pro forma",
+   "aliases": [
+    "pro forma combined",
+    "pro forma revenue",
+    "pro forma EBITDA",
+    "pro forma basis"
+   ],
+   "formula": "Results restated as if a transaction (acquisition, merger, divestiture, financing) had happened at the start of the period. Use the company's pro forma disclosure (acquisition note, S-4 or 8-K/A) when it exists; otherwise combine both companies' figures for the same period and state every adjustment.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "",
+   "excludes": "",
+   "units": "",
+   "pitfalls": "Reported results only include an acquired business from the closing date. Organic growth against a pro forma base differs from growth on reported figures; say which.",
+   "category": "deals",
+   "sources": "FASB Accounting Standards Codification (ASC) 805-10-50-2(h) (pro forma disclosures for business combinations); Article 11 of Regulation S-X.",
+   "definition": "Results shown as if a transaction had happened earlier."
+  },
+  {
+   "name": "liquidity",
+   "aliases": [
+    "total liquidity",
+    "available liquidity",
+    "liquidity position",
+    "borrowing capacity",
+    "undrawn availability",
+    "availability under credit facilities"
+   ],
+   "formula": "Use the company's own liquidity figure when it states one (usually a table in MD&A 'Liquidity and Capital Resources': cash and equivalents + marketable securities + undrawn committed availability). If you must build it: cash and equivalents + short-term investments + (committed facility size - drawn - letters of credit issued UNDER that facility). Projections add the stated inflows and subtract the stated outflows from that base.",
+   "convention": "varies",
+   "averages": "",
+   "includes": "undrawn committed revolver and delayed-draw capacity",
+   "excludes": "uncommitted lines; restricted cash unless the company counts it",
+   "units": "USD",
+   "pitfalls": "Letters of credit reduce availability only when issued under the facility; standalone letters of credit backing leases or performance do not (check the debt note: 'no outstanding balances' on the LC sub-facility means nothing to subtract). A total the company reports beats one rebuilt from parts; if yours differs, give the company's figure first and explain the difference.",
+   "category": "leverage",
+   "sources": "Company definitions in MD&A (SEC Regulation S-K Item 303, liquidity and capital resources).",
+   "definition": "Cash plus what the company can still draw on committed facilities."
+  },
+  {
+   "name": "debt exchange value to holders",
+   "aliases": [
+    "debt restructuring",
+    "debt exchange",
+    "exchange offer",
+    "distressed exchange",
+    "value realized by debt holders",
+    "recovery to bondholders",
+    "gain to bondholders"
+   ],
+   "formula": "Compare holders' value before and after on the same basis. Before: the price assumed or quoted x face of every note in the class the question names (all outstanding, unless it names the tendered notes). After: new notes (at the price assumed, often par) + cash paid for principal + notes not tendered (still outstanding, valued as the question says). Gain = after - before.",
+   "convention": "standard",
+   "averages": "",
+   "includes": "new notes, cash for principal, untendered notes",
+   "excludes": "cash paid for accrued and unpaid interest (shown separately)",
+   "units": "USD",
+   "pitfalls": "Bond prices are quoted clean (excluding accrued interest) unless stated otherwise, so a note 'trading at 40% of face' is worth 40% of face plus the accrued-interest claim. Cash paid in the exchange for accrued and unpaid interest settles that claim; it is on both sides and is not a gain. Headline the gain without it; give the figure that adds the accrued-interest cash as the second value, explained ('only if the stated price is a dirty price, including accrued interest'). Accounting agrees: accrued interest settled at the exchange is separate from the gain or loss on extinguishment (ASC 470-50).",
+   "category": "deals",
+   "sources": "Bond market quotation convention (clean vs dirty price; SIFMA and FINRA TRACE report clean prices plus accrued interest); FASB Accounting Standards Codification 470-50 (debt modifications and extinguishments).",
+   "definition": "How much more the holders' position is worth after an exchange or tender than before, on one consistent basis."
+  },
+  {
+   "name": "precedent transactions multiple",
+   "aliases": [
+    "precedent transactions",
+    "precedent transaction analysis",
+    "aggregate precedents",
+    "selected precedent transactions",
+    "transaction multiples",
+    "comparable transactions",
+    "precedents presented by advisors"
+   ],
+   "formula": "Take the deal multiples from the fairness-opinion summaries in the merger proxy (DEFM14A / PREM14A or S-4, section 'Opinion of [advisor]'), which list each selected transaction and its multiple (e.g. EV / LTM Adjusted EBITDA). 'Aggregate', 'combined' or 'all precedents the advisors presented' means pool every transaction listed by every advisor (count a deal twice only if both advisors list it and the question does not say to de-duplicate) and take the mean (or median if asked) of that pooled list. Implied value = that multiple x the target's metric named in the question (from the same proxy).",
+   "convention": "standard",
+   "averages": "",
+   "includes": "every transaction listed by every advisor named",
+   "excludes": "",
+   "units": "x",
+   "pitfalls": "Do not substitute one advisor's own summary statistic (its mean or median) for the pooled average when the question says aggregate or advisors (plural). Give each advisor's own figure only as context. State how many transactions were pooled and whether duplicates were kept.",
+   "category": "deals",
+   "sources": "CFA Program Curriculum, Level II, Private Company Valuation (guideline transactions method); fairness-opinion disclosures under SEC Rule 13e-3 and Item 1015 of Regulation M-A.",
+   "definition": "Valuation from the multiples paid in comparable past acquisitions, as presented by the deal's financial advisors."
+  }
+ ]
+}

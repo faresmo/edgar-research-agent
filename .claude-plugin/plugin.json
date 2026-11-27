@@ -1,0 +1,19 @@
+{
+  "name": "edgar-research-agent",
+  "version": "0.3.5",
+  "description": "Answers questions about companies that file with the SEC, from their filings. Every figure is checked against the filing before the answer is given, and each answer shows its sources and working. For Claude Code and Cowork on macOS (Linux also works). Windows and chat on claude.ai are not supported yet.",
+  "author": {
+    "name": "Fares Bagh"
+  },
+  "license": "PolyForm-Shield-1.0.0",
+  "keywords": [
+    "SEC",
+    "EDGAR",
+    "10-K",
+    "financial research",
+    "equity research",
+    "filings",
+    "XBRL",
+    "valuation"
+  ]
+}

@@ -1,0 +1,524 @@
+{
+ "version": 2,
+ "note": "Analyst choices the user may set. A method instruction in the question beats the user's setting, which beats the default. 'applied' says where the setting takes effect: 'code' = the tools apply it; 'answer' = it is given to Claude as a rule and stated in the answer.",
+ "conventions": [
+  {
+   "id": "prior_year_figures",
+   "label": "Figures for earlier years",
+   "default": "latest",
+   "options": {
+    "latest": "From the latest filing that reports the year (picks up restatements and reclassifications)",
+    "original": "As originally reported, in that year's own 10-K or 10-Q"
+   },
+   "applied": "code",
+   "affects": [
+    "every figure taken for a past period"
+   ],
+   "source": "Analyst practice. Comparative columns of a later filing carry restatements and reclassifications, so time series use them for comparability (CFA Program Curriculum, Level I, Financial Statement Analysis, 'Financial Reporting Quality' on restatements); point-in-time and audit work uses the figure as originally reported.",
+   "question_patterns": {
+    "original": [
+     "as originally reported",
+     "as first reported",
+     "originally reported",
+     "original (?:annual )?10-?k",
+     "original annual 10-?ks?",
+     "original filings?"
+    ]
+   }
+  },
+  {
+   "id": "guidance_precision",
+   "label": "Actual versus guidance: precision of the actual",
+   "default": "exact",
+   "options": {
+    "exact": "The exact figure from the financial statements (73.03%)",
+    "guidance": "Rounded to the precision the guidance was given in (73.0%)"
+   },
+   "applied": "answer",
+   "affects": [
+    "beat or miss versus guidance"
+   ],
+   "source": "Catalogue entry 'beat or miss versus guidance': use the exact figure from the financial statements, not the rounded headline. The rounded comparison is a common desk alternative when guidance itself is given to one decimal."
+  },
+  {
+   "id": "guidance_point",
+   "label": "Guidance point compared against",
+   "default": "midpoint",
+   "options": {
+    "midpoint": "Midpoint of a guided range (the stated figure for one-sided guidance)",
+    "low_end": "Low end of the range",
+    "high_end": "High end of the range"
+   },
+   "applied": "answer",
+   "affects": [
+    "beat or miss versus guidance"
+   ],
+   "source": "Sell-side convention (results compared with the midpoint of the guided range); catalogue entry 'beat or miss versus guidance'.",
+   "question_patterns": {
+    "low_end": [
+     "low end of (?:the )?(?:guidance|range)",
+     "against the floor"
+    ],
+    "high_end": [
+     "high end of (?:the )?(?:guidance|range)"
+    ]
+   }
+  },
+  {
+   "id": "earnings_basis",
+   "label": "GAAP or adjusted, when the question does not say",
+   "default": "both_gaap_first",
+   "options": {
+    "both_gaap_first": "Both, carried through to the result: the GAAP figure first, the company's adjusted (non-GAAP) figure beside it, each labelled",
+    "both_adjusted_first": "Both, carried through to the result: the company's adjusted (non-GAAP) figure first, the GAAP figure beside it, each labelled",
+    "gaap_only": "The GAAP figure only",
+    "adjusted_only": "The company's adjusted (non-GAAP) figure only"
+   },
+   "applied": "answer",
+   "affects": [
+    "earnings, EPS and margins where a company reports a GAAP and an adjusted figure",
+    "guidance, beat or miss, valuation multiples"
+   ],
+   "source": "SEC Regulation G and Regulation S-K Item 10(e): a non-GAAP measure must be reconciled to the GAAP measure, which is given equal or greater prominence. Analyst practice works mostly from the adjusted figure, so both are shown; the GAAP figure is the one defined the same way for every company.",
+   "question_patterns": {
+    "gaap_only": [
+     "(?<!non-)(?<!non )\\bgaap\\b",
+     "\\bas reported\\b",
+     "\\breported (?:eps|earnings|net income)"
+    ],
+    "adjusted_only": [
+     "\\badjusted\\b",
+     "\\bnon-?gaap\\b",
+     "\\bcore (?:eps|earnings)",
+     "\\bnormali[sz]ed\\b"
+    ]
+   }
+  },
+  {
+   "id": "guidance_version",
+   "label": "Which guidance, when it was revised",
+   "default": "latest",
+   "options": {
+    "latest": "The latest guidance the company had given as of the date of the question, with the release named; earlier versions mentioned if it was revised",
+    "original": "The first guidance given for the period"
+   },
+   "applied": "answer",
+   "affects": [
+    "guidance, beat or miss, anything built on a guided figure"
+   ],
+   "source": "Analyst practice: results and prices are measured against the most recent guidance in force (sell-side convention; catalogue entry 'beat or miss versus guidance'). The original guidance answers a different question: how the year went against the first plan.",
+   "question_patterns": {
+    "original": [
+     "original guidance",
+     "initial guidance",
+     "first guidance",
+     "guidance (?:given )?at the (?:start|beginning) of the year"
+    ]
+   }
+  },
+  {
+   "id": "share_count",
+   "label": "Share count for market cap and EV",
+   "default": "cover_page",
+   "options": {
+    "cover_page": "Basic shares on the cover page of the 10-K/10-Q for the balance-sheet date (as of the cover-page date); every answer also states the figures on the reported diluted weighted-average shares",
+    "balance_sheet": "Shares outstanding on the balance-sheet date",
+    "diluted": "Diluted shares (you supply the count)"
+   },
+   "applied": "code",
+   "affects": [
+    "market capitalization",
+    "enterprise value",
+    "EV multiples",
+    "per-share values"
+   ],
+   "source": "CFA Program Curriculum, Level II, Equity Valuation, 'Market-Based Valuation': market value of equity = price x shares outstanding; which count is analyst convention. The cover-page count (SEC Regulation S-K, latest practicable date) is the most recent count a filing gives. Since 5 Nov 2026 answers state both counts, diluted first (user decision); the diluted count is the company's reported weighted average for the period, not a treasury-stock-method count at the price date.",
+   "question_patterns": {
+    "diluted": [
+     "diluted shares? (?:count )?(?:for|in) (?:the )?(?:market cap|market capitali[sz]ation|enterprise value|ev\\b)",
+     "(?:market cap|market capitali[sz]ation|enterprise value)[^.]{0,40}diluted shares"
+    ],
+    "cover_page": [
+     "cover[- ]page share"
+    ]
+   }
+  },
+  {
+   "id": "ev_short_term_investments",
+   "label": "Short-term investments in enterprise value",
+   "default": "exclude",
+   "options": {
+    "exclude": "Subtract cash and cash equivalents only",
+    "include": "Also subtract short-term investments (marketable securities)"
+   },
+   "applied": "code",
+   "affects": [
+    "enterprise value",
+    "EV multiples"
+   ],
+   "source": "CFA Program Curriculum, Level II, Equity Valuation, 'Market-Based Valuation' subtracts cash and short-term investments; many desks subtract cash and equivalents only. This catalogue's default is cash and equivalents.",
+   "question_patterns": {
+    "include": [
+     "short-term investments",
+     "marketable securities"
+    ]
+   }
+  },
+  {
+   "id": "ev_operating_leases",
+   "label": "Operating leases in enterprise value",
+   "default": "if_asked",
+   "options": {
+    "if_asked": "Added as debt-like only when the question says so",
+    "always": "Always added as debt-like (current + non-current lease liabilities)"
+   },
+   "applied": "code",
+   "affects": [
+    "enterprise value",
+    "EV multiples"
+   ],
+   "source": "Rating-agency lease adjustment (S&P Global Ratings, Moody's); under ASC 842 lease liabilities are on the balance sheet but outside debt, so including them is a choice.",
+   "question_patterns": {
+    "always": [
+     "operating leases as debt",
+     "include operating leases",
+     "lease-adjusted"
+    ]
+   }
+  },
+  {
+   "id": "net_debt_cash",
+   "label": "Cash subtracted in net debt",
+   "default": "cash_only",
+   "options": {
+    "cash_only": "Cash and cash equivalents",
+    "with_investments": "Cash, equivalents and short-term investments"
+   },
+   "applied": "answer",
+   "affects": [
+    "net debt",
+    "leverage ratios"
+   ],
+   "source": "CFA Program Curriculum, Level II, Equity Valuation, 'Market-Based Valuation' (cash and short-term investments); catalogue default cash and equivalents."
+  },
+  {
+   "id": "fcf_deductions",
+   "label": "What free cash flow subtracts",
+   "default": "capex_only",
+   "options": {
+    "capex_only": "Operating cash flow less purchases of property and equipment",
+    "broad": "Also capitalised software and intangible purchases and finance-lease principal"
+   },
+   "applied": "answer",
+   "affects": [
+    "free cash flow",
+    "free cash flow margin",
+    "cash flow conversion"
+   ],
+   "source": "Company and analyst practice (CFO - capex); CFA defines FCFF/FCFE separately (Level II, 'Free Cash Flow Valuation')."
+  },
+  {
+   "id": "cash_conversion_denominator",
+   "label": "Cash conversion denominator",
+   "default": "net_income",
+   "options": {
+    "net_income": "Free cash flow / net income",
+    "ebitda": "Free cash flow / EBITDA"
+   },
+   "applied": "answer",
+   "affects": [
+    "cash flow conversion"
+   ],
+   "source": "No CFA definition; desk convention varies."
+  },
+  {
+   "id": "dcf_timing",
+   "label": "DCF discounting",
+   "default": "end_of_year",
+   "options": {
+    "end_of_year": "End-of-year discounting (first projected year t = 1)",
+    "mid_year": "Mid-year convention (t = 0.5, 1.5, ...)"
+   },
+   "applied": "answer",
+   "affects": [
+    "discounted cash flow",
+    "terminal value"
+   ],
+   "source": "CFA Program Curriculum, Level II, 'Free Cash Flow Valuation' (end-of-period); mid-year is an investment-banking variant (Rosenbaum & Pearl).",
+   "question_patterns": {
+    "mid_year": [
+     "mid-?year convention",
+     "mid-?year discounting"
+    ]
+   }
+  },
+  {
+   "id": "ufcf_sbc",
+   "label": "Stock-based compensation in unlevered FCF",
+   "default": "add_back",
+   "options": {
+    "add_back": "Added back as a non-cash charge",
+    "subtract": "Treated as a cash cost (not added back)"
+   },
+   "applied": "answer",
+   "affects": [
+    "unlevered free cash flow",
+    "discounted cash flow"
+   ],
+   "source": "CFA Program Curriculum, Level II, 'Free Cash Flow Valuation' (non-cash charges added back); subtracting SBC is a desk variant."
+  },
+  {
+   "id": "transaction_value",
+   "label": "Transaction value in M&A questions",
+   "default": "announced",
+   "options": {
+    "announced": "The deal value the announcement itself states (merger 8-K, press release, proxy); an enterprise value built from the target's balance sheet is shown as a labelled alternative",
+    "rebuilt_ev": "Enterprise value rebuilt from the offer price and the target's balance sheet (equity value + debt - cash ...)"
+   },
+   "applied": "answer",
+   "affects": [
+    "acquisition premium",
+    "implied enterprise value",
+    "deal multiples"
+   ],
+   "source": "Precedent-transaction practice: deal tables quote the transaction value the parties announce, with multiples on that value; analyst training (Wall Street Prep, Breaking Into Wall Street) builds EV only when the question asks for enterprise value. Added 5 Nov 2026 after four precedent answers led with a rebuilt EV where the question meant the announced value.",
+   "question_patterns": {
+    "rebuilt_ev": [
+     "implied enterprise value",
+     "enterprise value of the (?:target|deal|transaction)"
+    ],
+    "announced": [
+     "announced (?:deal|transaction) value"
+    ]
+   }
+  },
+  {
+   "id": "revenue_line",
+   "label": "'Revenue' where a company reports total revenue and net sales",
+   "default": "total_revenue",
+   "options": {
+    "total_revenue": "Total revenues, the top line of the income statement",
+    "net_sales": "Net sales, excluding membership fees and other income"
+   },
+   "applied": "answer",
+   "affects": [
+    "revenue, growth and margin for companies with membership or other income beside net sales"
+   ],
+   "source": "US GAAP presentation (ASC 606 / Regulation S-X Rule 5-03): total revenues is the top line and is defined the same way across companies. House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison.",
+   "question_patterns": {
+    "net_sales": [
+     "\\bnet sales\\b"
+    ],
+    "total_revenue": [
+     "\\btotal revenues?\\b"
+    ]
+   }
+  },
+  {
+   "id": "rd_expense",
+   "label": "'R&D expense'",
+   "default": "company_funded",
+   "options": {
+    "company_funded": "The research and development expense line on the income statement (company-funded)",
+    "with_customer_funded": "Company-funded plus customer-funded research and development, where the company discloses the latter"
+   },
+   "applied": "answer",
+   "affects": [
+    "R&D, R&D intensity, pro forma margins without R&D"
+   ],
+   "source": "US GAAP (ASC 730): research and development expense is the company-funded amount charged to the income statement; customer-funded work sits in cost of sales and is disclosed separately. House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison.",
+   "question_patterns": {
+    "with_customer_funded": [
+     "customer[- ]funded",
+     "total r&d (?:spend|investment)",
+     "including customer"
+    ],
+    "company_funded": [
+     "company[- ]funded"
+    ]
+   }
+  },
+  {
+   "id": "organic_growth",
+   "label": "'Organic growth'",
+   "default": "ex_deals",
+   "options": {
+    "ex_deals": "The company's own published organic growth figure; if it publishes none, growth excluding acquisitions and disposals (the continuing business)",
+    "combined": "Both businesses combined in both periods (pro forma for the deal)"
+   },
+   "applied": "answer",
+   "affects": [
+    "organic growth, like-for-like growth around an acquisition"
+   ],
+   "source": "Non-GAAP measure under SEC Regulation G; company reconciliations in earnings releases. CFA Program Curriculum (Financial Statement Analysis): organic growth excludes the effect of acquisitions and divestitures. House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison.",
+   "question_patterns": {
+    "combined": [
+     "pro[- ]?forma",
+     "combined (?:company|business|basis)",
+     "as if (?:the )?(?:deal|acquisition|merger)"
+    ]
+   }
+  },
+  {
+   "id": "ebitda_minorities",
+   "label": "EBITDA where minority partners own part of the business",
+   "default": "whole_company",
+   "options": {
+    "whole_company": "EBITDA of the whole consolidated company, including the share of minority (non-controlling) interests",
+    "attributable": "EBITDA attributable to the company's own shareholders, after the minority share"
+   },
+   "applied": "answer",
+   "affects": [
+    "leverage, debt capacity, EV/EBITDA for companies with non-controlling interests"
+   ],
+   "source": "Credit and valuation practice: consolidated debt and enterprise value (which includes non-controlling interests) are compared with consolidated EBITDA (CFA Program Curriculum, Equity Valuation: enterprise value multiples). House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison.",
+   "question_patterns": {
+    "attributable": [
+     "attributable to",
+     "net of (?:nci|non-?controlling|minority)",
+     "excluding (?:nci|non-?controlling|minority)"
+    ]
+   }
+  },
+  {
+   "id": "unpublished_adjusted_measure",
+   "label": "An 'adjusted' measure the company does not publish",
+   "default": "closest_published",
+   "options": {
+    "closest_published": "The company's closest published measure, named as such, with the GAAP figure beside it; no adjustments of our own",
+    "gaap_figure": "The GAAP figure only, saying the company publishes no adjusted one"
+   },
+   "applied": "answer",
+   "affects": [
+    "adjusted EBIT, adjusted NOPAT, adjusted ROA and the like when the company reports no such line"
+   ],
+   "source": "SEC Regulation G: a non-GAAP measure is the company's, with its reconciliation. Standard practice is not to construct adjustments the company has not made. House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison."
+  },
+  {
+   "id": "pooled_lists",
+   "label": "A list pooled from several sources",
+   "default": "distinct_once",
+   "options": {
+    "distinct_once": "Each distinct item counted once; items that appear in more than one source are named",
+    "with_repeats": "Every entry counted as listed, repeats included"
+   },
+   "applied": "answer",
+   "affects": [
+    "averages and medians across precedent transactions, comparables or holdings taken from more than one list"
+   ],
+   "source": "Statistical practice: an average over transactions or companies counts each once (CFA Program Curriculum, Quantitative Methods). House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison.",
+   "question_patterns": {
+    "with_repeats": [
+     "including duplicates",
+     "each adviser(?:'s)? list separately"
+    ]
+   }
+  },
+  {
+   "id": "debt_value",
+   "label": "Value of debt",
+   "default": "face",
+   "options": {
+    "face": "Principal (face) amount, without accrued interest",
+    "with_accrued": "Principal plus accrued interest"
+   },
+   "applied": "answer",
+   "affects": [
+    "debt exchanges, tender offers, recoveries, value to holders"
+   ],
+   "source": "Market convention: bonds are quoted and exchanged on a clean-price basis, accrued interest settled separately (CFA Program Curriculum, Fixed Income: full price and flat price). House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison.",
+   "question_patterns": {
+    "with_accrued": [
+     "accrued interest",
+     "dirty price",
+     "full price"
+    ]
+   }
+  },
+  {
+   "id": "liquidity_basis",
+   "label": "Liquidity",
+   "default": "company_stated",
+   "options": {
+    "company_stated": "The company's own stated liquidity figure, unless the question spells out a formula (then the formula, with the company's figure beside it)",
+    "rebuilt": "Rebuilt from cash, securities and undrawn facilities"
+   },
+   "applied": "answer",
+   "affects": [
+    "total liquidity, available liquidity"
+   ],
+   "source": "The filing is the primary source: where the company states a total, it leads (SEC Regulation S-K Item 303, liquidity and capital resources). House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison."
+  },
+  {
+   "id": "extreme_price",
+   "label": "'Highest' or 'lowest possible' share price",
+   "default": "intraday",
+   "options": {
+    "intraday": "The day's high or low",
+    "close": "The highest or lowest closing price"
+   },
+   "applied": "answer",
+   "affects": [
+    "worst-case and best-case returns, price ranges"
+   ],
+   "source": "Plain meaning of highest and lowest price; market data reports intraday high and low alongside the close. House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison.",
+   "question_patterns": {
+    "close": [
+     "(?:highest|lowest|high|low)[^.]{0,30}clos(?:e|ing)",
+     "on a closing basis",
+     "closing prices? only"
+    ]
+   }
+  },
+  {
+   "id": "projected_figures",
+   "label": "'Projected', 'expected' or 'guided' figures",
+   "default": "guidance",
+   "options": {
+    "guidance": "The company's guidance or outlook; if it cannot be obtained, the answer says so first and gives a result on the actual to date, labelled as a stand-in",
+    "actual_to_date": "The actual figure to date, labelled"
+   },
+   "applied": "answer",
+   "affects": [
+    "projected tax rates, expected margins, anything the question calls projected or expected"
+   ],
+   "source": "A projection is forward-looking information from the company (earnings release, call or presentation), not a reported actual. House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison."
+  },
+  {
+   "id": "eps_dilution",
+   "label": "Earnings per share: diluted or basic",
+   "default": "diluted",
+   "options": {
+    "diluted": "Diluted earnings per share",
+    "basic": "Basic earnings per share"
+   },
+   "applied": "answer",
+   "affects": [
+    "EPS, P/E, guidance on EPS"
+   ],
+   "source": "US GAAP (ASC 260) requires both; valuation and company guidance use diluted (CFA Program Curriculum, Financial Statement Analysis: earnings per share). House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison.",
+   "question_patterns": {
+    "basic": [
+     "\\bbasic (?:eps|earnings)"
+    ],
+    "diluted": [
+     "\\b(?:fully[- ])?diluted (?:eps|earnings)"
+    ]
+   }
+  },
+  {
+   "id": "average_balance",
+   "label": "'Average balance' for interest or a preferred return",
+   "default": "with_period_accrual",
+   "options": {
+    "with_period_accrual": "Average of the opening and closing balance, the closing balance including the period's own accrual, in every period",
+    "before_period_accrual": "Average of the opening balance and the balance after the period's cash flows, before the period's own accrual, in every period"
+   },
+   "applied": "answer",
+   "affects": [
+    "interest on average debt, preferred returns in fund waterfalls, any rate applied to an average balance"
+   ],
+   "source": "Financial modelling practice: interest on the average of opening and closing balances, solved with the accrual included (the circular form used in LBO and fund models). House convention agreed with the product owner on 11 Nov 2026 after the benchmark comparison."
+  }
+ ]
+}

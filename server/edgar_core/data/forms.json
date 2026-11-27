@@ -1,0 +1,1144 @@
+{
+ "source": "SEC forms list (sec.gov/forms, 162 entries, read 13 Oct 2026) plus EDGAR submission types not on that list; rich entries written from the forms' instructions and general practice, and marked tested only where this library has been run against a real filing of that type.",
+ "entries": [
+  {
+   "form": "10-K",
+   "name": "Annual report",
+   "category": "periodic_report",
+   "filer": "US operating company",
+   "cadence": "annual",
+   "contents": "Audited annual report: Item 1 business, 1A risk factors, 1C cybersecurity, 2 properties, 3 legal proceedings, 5 market for stock and buybacks, 7 MD&A (results, liquidity, non-GAAP), 7A market risk, 8 financial statements and notes (debt, leases, converts, segments, share counts), 9A controls, 10-14 governance (usually incorporated from the proxy), 15 exhibits. Cover page: shares outstanding by class, public float, fiscal year end.",
+   "substance_in": "main document",
+   "format": "html+xbrl",
+   "answers": [
+    "revenue",
+    "net income",
+    "financial statements",
+    "risk factors",
+    "business description",
+    "MD&A",
+    "segments",
+    "geographic revenue",
+    "employees",
+    "shares outstanding",
+    "share repurchases",
+    "debt",
+    "leases",
+    "convertible notes",
+    "legal proceedings",
+    "properties",
+    "cybersecurity",
+    "effective tax rate",
+    "key business metrics",
+    "KPIs",
+    "non-GAAP reconciliation",
+    "auditor",
+    "material cash requirements"
+   ],
+   "read_with": [
+    "get_financial_fact",
+    "get_section",
+    "find_in_document",
+    "get_table",
+    "list_documents"
+   ],
+   "notes": "Items 10-14 usually say 'incorporated by reference from the proxy statement': go to DEF 14A. Figures for the prior year may be restated here; say which filing a number came from.",
+   "variants": [
+    "10-K/A",
+    "10-KT",
+    "10-K405"
+   ],
+   "tested": true
+  },
+  {
+   "form": "10-Q",
+   "name": "Quarterly report",
+   "category": "periodic_report",
+   "filer": "US operating company",
+   "cadence": "quarterly (Q1-Q3; no Q4 10-Q, the 10-K covers it)",
+   "contents": "Unaudited quarterly statements with the three-month and year-to-date columns, condensed notes, Part I Item 2 MD&A, Item 3 market risk, Item 4 controls; Part II: legal proceedings, risk factor updates, buybacks (Item 2), exhibits.",
+   "substance_in": "main document",
+   "format": "html+xbrl",
+   "answers": [
+    "quarterly revenue",
+    "quarterly net income",
+    "nine months",
+    "six months",
+    "year to date",
+    "quarterly share repurchases",
+    "quarterly MD&A",
+    "quarterly KPIs"
+   ],
+   "read_with": [
+    "get_financial_fact",
+    "find_in_document",
+    "get_table"
+   ],
+   "notes": "Item numbers repeat between Part I and Part II, so the 10-K section splitter does not apply; use find_in_document and get_table. 'Last nine months as of' a November date means the Q3 10-Q year-to-date column.",
+   "variants": [
+    "10-Q/A",
+    "10-QT"
+   ],
+   "tested": true
+  },
+  {
+   "form": "8-K",
+   "name": "Current report",
+   "category": "current_report",
+   "filer": "US operating company",
+   "cadence": "event (within four business days)",
+   "contents": "Short cover document organised by Item number; the substance is in exhibits. Item 2.02 results of operations (earnings release, Ex 99.1), Item 1.01 material agreements (mergers, financings), Item 2.01 completed acquisitions, Item 2.03 new debt, Item 5.02 officer and director changes, Item 5.07 shareholder vote results, Item 7.01 / 8.01 other announcements, Item 9.01 exhibit list.",
+   "substance_in": "EX-99.1 (press release) and other exhibits",
+   "format": "html",
+   "answers": [
+    "earnings release",
+    "guidance",
+    "outlook",
+    "beat or miss",
+    "non-GAAP reconciliation",
+    "adjusted EBITDA",
+    "CFO change",
+    "CEO change",
+    "officer appointment",
+    "acquisition announcement",
+    "merger agreement",
+    "debt issuance",
+    "capital raise",
+    "shareholder vote",
+    "dividend announcement",
+    "restructuring"
+   ],
+   "read_with": [
+    "list_documents",
+    "get_exhibit",
+    "find_in_document",
+    "get_table"
+   ],
+   "notes": "Guidance exists on EDGAR only here (Ex 99.1) or in an investor presentation (Ex 99.2). Item 5.02 is the source for 'who is the CFO as of'. Filter list_filings by form 8-K and then read the Item numbers in the body to pick the right one.",
+   "variants": [
+    "8-K/A",
+    "8-K12B",
+    "8-K12G3",
+    "8-K15D5"
+   ],
+   "tested": true
+  },
+  {
+   "form": "DEF 14A",
+   "name": "Definitive proxy statement",
+   "category": "proxy",
+   "filer": "US operating company",
+   "cadence": "annual (before the annual meeting), plus special meetings",
+   "contents": "Director nominees and biographies, executive compensation (summary compensation table, pay versus performance, CEO pay ratio), director compensation table, compensation peer group, beneficial ownership table, auditor fees, proposals and board recommendations, related-party transactions.",
+   "substance_in": "main document",
+   "format": "html (pay-versus-performance data is XBRL-tagged)",
+   "answers": [
+    "director compensation",
+    "executive compensation",
+    "CEO pay",
+    "board nominees",
+    "directors",
+    "peer group",
+    "beneficial ownership",
+    "largest shareholders",
+    "auditor fees",
+    "say on pay",
+    "related party transactions",
+    "shareholder proposals"
+   ],
+   "read_with": [
+    "find_in_document",
+    "get_table",
+    "get_section"
+   ],
+   "notes": "This is where 10-K Items 10-14 actually live. Director compensation is a table near the end of the compensation section; sum the Total column for 'total director compensation'. The compensation peer group is the natural peer set for market-analysis questions.",
+   "variants": [
+    "DEFA14A (additional materials)",
+    "PRE 14A (preliminary)",
+    "DEFM14A (merger proxy)",
+    "DEFC14A / DFAN14A (contested)",
+    "PRE 14C / DEF 14C (information statement)"
+   ],
+   "tested": false
+  },
+  {
+   "form": "DEFM14A",
+   "name": "Merger proxy statement",
+   "category": "m_and_a",
+   "filer": "target company",
+   "cadence": "event",
+   "contents": "Full description of a merger: background of the deal, fairness opinions, deal price and consideration, equity and enterprise value, projections given to advisers, termination fees, vote required.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "acquisition price",
+    "merger consideration",
+    "enterprise value",
+    "fairness opinion",
+    "deal background",
+    "termination fee",
+    "management projections"
+   ],
+   "read_with": [
+    "find_in_document",
+    "get_table"
+   ],
+   "notes": "The 'Background of the Merger' section is the narrative; 'Opinion of Financial Advisor' holds valuation multiples. Equity and enterprise value are usually stated in the summary.",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "S-4",
+   "name": "Registration statement for securities issued in a business combination",
+   "category": "m_and_a",
+   "filer": "acquirer",
+   "cadence": "event",
+   "contents": "Like a merger proxy plus the acquirer's registration: deal terms, exchange ratio, pro forma financials, risk factors of the combined company.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "exchange ratio",
+    "merger terms",
+    "pro forma financials",
+    "stock deal",
+    "acquisition price"
+   ],
+   "read_with": [
+    "find_in_document",
+    "get_table"
+   ],
+   "notes": "Stock-for-stock deals (for example 0.7926 acquirer shares per target share) are described here and in the 8-K announcing the agreement.",
+   "variants": [
+    "S-4/A",
+    "F-4"
+   ],
+   "tested": false
+  },
+  {
+   "form": "SC 13D",
+   "name": "Beneficial ownership report, active holder (over 5%)",
+   "category": "ownership",
+   "filer": "investor",
+   "cadence": "event (within 5 business days) and on material change",
+   "contents": "Who bought, how much, purpose of the transaction (activism, control), source of funds, agreements with the issuer.",
+   "substance_in": "main document",
+   "format": "html (data also XBRL-tagged since 2024)",
+   "answers": [
+    "activist stake",
+    "5% holder",
+    "who owns",
+    "purpose of transaction",
+    "stake size"
+   ],
+   "read_with": [
+    "find_in_document",
+    "get_table"
+   ],
+   "notes": "",
+   "variants": [
+    "SC 13D/A"
+   ],
+   "tested": false
+  },
+  {
+   "form": "SC 13G",
+   "name": "Beneficial ownership report, passive holder (over 5%)",
+   "category": "ownership",
+   "filer": "institutional investor",
+   "cadence": "annual and on crossing thresholds",
+   "contents": "Passive holdings over 5%: holder, shares, percent of class.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "passive holders",
+    "institutional ownership",
+    "5% holders",
+    "index fund ownership"
+   ],
+   "read_with": [
+    "find_in_document",
+    "get_table"
+   ],
+   "notes": "",
+   "variants": [
+    "SC 13G/A"
+   ],
+   "tested": false
+  },
+  {
+   "form": "4",
+   "name": "Statement of changes in beneficial ownership (insider transactions)",
+   "category": "ownership",
+   "filer": "officer, director or 10% holder",
+   "cadence": "event (within two business days)",
+   "contents": "Each insider purchase, sale, grant or option exercise: date, shares, price, holdings after.",
+   "substance_in": "primary document",
+   "format": "xml (rendered as html)",
+   "answers": [
+    "insider selling",
+    "insider buying",
+    "executive stock sales",
+    "option exercises",
+    "10b5-1 plans"
+   ],
+   "read_with": [
+    "list_documents",
+    "read_document"
+   ],
+   "notes": "The data is XML (primary_doc.xml, like N-PORT); the listed primary document is the rendered page. No parser yet: read generically.",
+   "variants": [
+    "4/A",
+    "3 (initial holdings)",
+    "5 (annual)"
+   ],
+   "tested": false
+  },
+  {
+   "form": "13F-HR",
+   "name": "Institutional investment manager holdings report",
+   "category": "ownership",
+   "filer": "institutional manager with over $100 million",
+   "cadence": "quarterly (45 days after quarter end)",
+   "contents": "Every US-listed equity position of the manager: issuer, class, CUSIP, value, shares, voting authority.",
+   "substance_in": "information table",
+   "format": "xml (rendered as html)",
+   "answers": [
+    "hedge fund holdings",
+    "what does a manager own",
+    "13F positions",
+    "position changes"
+   ],
+   "read_with": [
+    "list_documents",
+    "read_document"
+   ],
+   "notes": "Equity long positions only: no shorts, bonds, or most derivatives. The holdings table is a separate XML document in the filing. No parser yet.",
+   "variants": [
+    "13F-HR/A",
+    "13F-NT (notice, holdings reported elsewhere)"
+   ],
+   "tested": false
+  },
+  {
+   "form": "144",
+   "name": "Notice of proposed sale of restricted or control securities",
+   "category": "ownership",
+   "filer": "insider",
+   "cadence": "event",
+   "contents": "Intended sales by insiders under Rule 144: shares, approximate date, broker.",
+   "substance_in": "main document",
+   "format": "xml/html",
+   "answers": [
+    "planned insider sales"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "S-1",
+   "name": "Registration statement (IPO or other offering)",
+   "category": "offering",
+   "filer": "US company",
+   "cadence": "event",
+   "contents": "Full prospectus: business, risk factors, use of proceeds, capitalisation, dilution, financial statements, management, principal shareholders, underwriting.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "IPO",
+    "use of proceeds",
+    "pre-IPO financials",
+    "capitalization",
+    "dilution",
+    "underwriters",
+    "lock-up"
+   ],
+   "read_with": [
+    "find_in_document",
+    "get_table",
+    "get_section"
+   ],
+   "notes": "Amendments (S-1/A) carry the price range; the final terms are in the 424B prospectus.",
+   "variants": [
+    "S-1/A",
+    "S-1MEF"
+   ],
+   "tested": false
+  },
+  {
+   "form": "S-3",
+   "name": "Shelf registration statement",
+   "category": "offering",
+   "filer": "seasoned US company",
+   "cadence": "event",
+   "contents": "Registers securities to be sold later off the shelf; terms come in later 424B prospectus supplements.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "shelf registration",
+    "at-the-market program"
+   ],
+   "read_with": [
+    "find_in_document"
+   ],
+   "notes": "",
+   "variants": [
+    "S-3/A",
+    "S-3ASR (automatic shelf)"
+   ],
+   "tested": false
+  },
+  {
+   "form": "424B",
+   "name": "Prospectus or prospectus supplement",
+   "category": "offering",
+   "filer": "issuer",
+   "cadence": "event",
+   "contents": "Final terms of an offering: size, price, coupon or dividend rate, maturity, conversion terms, liquidation preference, use of proceeds, underwriters.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "offering terms",
+    "notes offering",
+    "preferred stock terms",
+    "convertible terms",
+    "conversion rate",
+    "coupon",
+    "liquidation preference",
+    "capital raise",
+    "secondary offering",
+    "pricing"
+   ],
+   "read_with": [
+    "find_in_document",
+    "get_table"
+   ],
+   "notes": "Variants 424B1-424B8 are the same thing under different rules; search all of them. For 'summarise the terms of the Series D preferred', this is the document.",
+   "variants": [
+    "424B1",
+    "424B2",
+    "424B3",
+    "424B4",
+    "424B5",
+    "424B7",
+    "424B8"
+   ],
+   "tested": false
+  },
+  {
+   "form": "FWP",
+   "name": "Free writing prospectus",
+   "category": "offering",
+   "filer": "issuer",
+   "cadence": "event",
+   "contents": "Term sheet or pricing sheet circulated during an offering; the quickest statement of final terms.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "pricing term sheet",
+    "offering terms"
+   ],
+   "read_with": [
+    "read_document",
+    "get_table"
+   ],
+   "notes": "",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "D",
+   "name": "Notice of exempt (private) offering",
+   "category": "offering",
+   "filer": "any issuer, including private companies and funds",
+   "cadence": "event (within 15 days of first sale)",
+   "contents": "Amount offered and sold in a private placement, security type, investors, minimum investment.",
+   "substance_in": "primary document",
+   "format": "xml (rendered as html)",
+   "answers": [
+    "private placement",
+    "private fundraise",
+    "Regulation D",
+    "amount raised privately"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "",
+   "variants": [
+    "D/A"
+   ],
+   "tested": false
+  },
+  {
+   "form": "425",
+   "name": "Communications about a business combination",
+   "category": "m_and_a",
+   "filer": "parties to a merger",
+   "cadence": "event",
+   "contents": "Press releases, investor decks and transcripts about a pending merger, filed under Rule 425.",
+   "substance_in": "main document or exhibit",
+   "format": "html",
+   "answers": [
+    "merger announcement",
+    "deal presentation",
+    "merger FAQ"
+   ],
+   "read_with": [
+    "list_documents",
+    "read_document"
+   ],
+   "notes": "",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "SC TO-T",
+   "name": "Tender offer statement (third party)",
+   "category": "m_and_a",
+   "filer": "bidder",
+   "cadence": "event",
+   "contents": "Offer to purchase: price, conditions, expiry, background.",
+   "substance_in": "main document and exhibits",
+   "format": "html",
+   "answers": [
+    "tender offer price",
+    "tender offer terms"
+   ],
+   "read_with": [
+    "find_in_document"
+   ],
+   "notes": "",
+   "variants": [
+    "SC TO-I (issuer self-tender)",
+    "SC TO-C",
+    "SC 14D9 (target's response)",
+    "SC 13E3 (going private)"
+   ],
+   "tested": false
+  },
+  {
+   "form": "20-F",
+   "name": "Annual report of a foreign private issuer",
+   "category": "periodic_report",
+   "filer": "foreign private issuer (for example SAP, Sony)",
+   "cadence": "annual",
+   "contents": "Annual report under IFRS or home GAAP: Item 3 risk factors, 4 business, 5 operating and financial review, 6 directors and compensation, 7 major shareholders, 18 financial statements.",
+   "substance_in": "main document",
+   "format": "html+xbrl (IFRS tags, not us-gaap)",
+   "answers": [
+    "foreign company annual results",
+    "IFRS financials",
+    "ADR issuer annual report"
+   ],
+   "read_with": [
+    "find_in_document",
+    "get_table",
+    "get_financial_fact"
+   ],
+   "notes": "get_financial_fact looks up us-gaap tags; IFRS filers use the ifrs-full taxonomy, so most lookups return 'not found' and the table route is needed. Item numbers differ from the 10-K.",
+   "variants": [
+    "20-F/A",
+    "40-F (Canadian issuers)"
+   ],
+   "tested": false
+  },
+  {
+   "form": "6-K",
+   "name": "Report of a foreign private issuer",
+   "category": "current_report",
+   "filer": "foreign private issuer",
+   "cadence": "event / monthly / quarterly, whenever home-market disclosure is made",
+   "contents": "Whatever the issuer publishes at home: quarterly results, monthly revenue (some issuers), press releases, shareholder notices. The 8-K equivalent, but without Item numbers.",
+   "substance_in": "EX-99.1 and other exhibits",
+   "format": "html or pdf",
+   "answers": [
+    "foreign company quarterly results",
+    "foreign filer revenue by month",
+    "foreign guidance",
+    "foreign press release",
+    "monthly revenue",
+    "monthly revenue report",
+    "monthly sales"
+   ],
+   "read_with": [
+    "list_filings",
+    "list_documents",
+    "get_exhibit",
+    "get_table",
+    "find_in_document"
+   ],
+   "notes": "Figures are in the home currency (NT$, EUR, JPY); keep the currency and any exchange rate the question supplies. Many 6-Ks per year, so DO NOT rely on full-text search: use list_filings(form_type='6-K', date_from, date_to) by FILING DATE. Monthly revenue reports (TSMC and other Taiwanese issuers) are filed about 10 days after month end, so March revenue is the 6-K filed in the first half of April; open its EX-99.1 and get_table or find_in_document 'net revenue'. Quarterly results 6-Ks are filed in the month after quarter end. Foreign filers have no 10-Q/8-K, and often no us-gaap XBRL (IFRS filers): expect get_financial_fact to be empty and read the exhibits instead.",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "NPORT-P",
+   "name": "Monthly portfolio holdings report (public version)",
+   "category": "fund_report",
+   "filer": "registered fund (closed-end fund, ETF, mutual fund)",
+   "cadence": "monthly; public for the last month of each fiscal quarter, about 60 days later",
+   "contents": "Every position: name, identifiers, balance, value, percent of net assets, asset category, country; derivatives with counterparty, reference entity or index, notional, termination date, payment legs, upfront, unrealized gain; fund-level assets, liabilities, borrowings, risk metrics.",
+   "substance_in": "primary_doc.xml (the listed primary document is the rendered page; strip the xsl folder)",
+   "format": "xml",
+   "answers": [
+    "fund holdings",
+    "what does the fund own",
+    "fund derivatives",
+    "credit default swaps",
+    "CDS exposure",
+    "swap counterparties",
+    "fund leverage",
+    "top holdings",
+    "fund net assets",
+    "position sizes"
+   ],
+   "read_with": [
+    "get_portfolio_report",
+    "cds_exposure",
+    "latest_portfolio_report"
+   ],
+   "notes": "Holdings are as of the report date (period), not the filing date; say which. NPORT-EX is the human-readable schedule attached to the same filing. Reference names are free text; merge spellings.",
+   "variants": [
+    "NPORT-P/A",
+    "NPORT-EX (attached schedule)",
+    "NPORT-NP (non-public)"
+   ],
+   "tested": true
+  },
+  {
+   "form": "N-CSR",
+   "name": "Certified annual shareholder report of a registered fund",
+   "category": "fund_report",
+   "filer": "registered fund",
+   "cadence": "annual (N-CSRS is the semi-annual)",
+   "contents": "Audited schedule of investments (derivatives labelled 'buy protection' / 'sell protection'), statements of assets and liabilities and operations, financial highlights (NAV, expense ratio, total return), notes (derivative risk, maximum potential payout on protection sold, leverage, fees), manager's letter.",
+   "substance_in": "main document",
+   "format": "html (financial highlights XBRL-tagged)",
+   "answers": [
+    "fund annual report",
+    "fund expense ratio",
+    "fund total return",
+    "NAV per share",
+    "maximum potential payout",
+    "fund leverage",
+    "fund fees",
+    "schedule of investments",
+    "manager commentary"
+   ],
+   "read_with": [
+    "find_in_document",
+    "get_table",
+    "list_documents"
+   ],
+   "notes": "The notes state the fund's own maximum liability on sold CDS protection: the cross-check for cds_exposure. Large documents (1-2 MB); use find_in_document first.",
+   "variants": [
+    "N-CSRS",
+    "N-CSR/A"
+   ],
+   "tested": false
+  },
+  {
+   "form": "N-CEN",
+   "name": "Annual census report of a registered fund",
+   "category": "fund_report",
+   "filer": "registered fund",
+   "cadence": "annual",
+   "contents": "Structured facts about the fund: adviser, sub-advisers, auditor, share classes, leverage used, securities lending, whether it used derivatives, exchange and ticker.",
+   "substance_in": "primary_doc.xml",
+   "format": "xml",
+   "answers": [
+    "fund adviser",
+    "fund auditor",
+    "fund ticker",
+    "fund structure",
+    "does the fund use leverage"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "No parser yet.",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "N-2",
+   "name": "Registration statement of a closed-end fund",
+   "category": "fund_registration",
+   "filer": "closed-end fund or BDC",
+   "cadence": "at offering and when amended",
+   "contents": "Investment objective and policies, leverage limits, fees table, risk factors, distribution policy, management.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "fund investment policy",
+    "fund objective",
+    "fund fees table",
+    "closed-end fund offering",
+    "leverage limit"
+   ],
+   "read_with": [
+    "find_in_document",
+    "get_section"
+   ],
+   "notes": "",
+   "variants": [
+    "N-2/A",
+    "N-2ASR",
+    "N-1A (open-end funds / ETFs)",
+    "497 / 497K (prospectus updates)"
+   ],
+   "tested": false
+  },
+  {
+   "form": "N-PX",
+   "name": "Annual proxy voting record of a fund",
+   "category": "fund_report",
+   "filer": "registered fund",
+   "cadence": "annual (August)",
+   "contents": "How the fund voted on every proxy proposal; since 2024 in XML and covering say-on-pay votes.",
+   "substance_in": "primary_doc.xml",
+   "format": "xml",
+   "answers": [
+    "how did the fund vote",
+    "proxy voting record"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "No parser yet.",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "13F-HR and N-PORT difference",
+   "name": "Note: manager holdings versus fund holdings",
+   "category": "fund_report",
+   "filer": "",
+   "cadence": "",
+   "contents": "13F-HR is filed by the management company for all its accounts (equities only); N-PORT is filed per registered fund with every asset class. For a hedge fund manager use 13F; for its listed closed-end fund use N-PORT.",
+   "substance_in": "",
+   "format": "",
+   "answers": [
+    "which holdings report"
+   ],
+   "read_with": [],
+   "notes": "",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "11-K",
+   "name": "Annual report of employee stock plans",
+   "category": "periodic_report",
+   "filer": "company with a 401(k)/ESPP holding company stock",
+   "cadence": "annual",
+   "contents": "Plan financial statements.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "employee plan assets"
+   ],
+   "read_with": [
+    "find_in_document"
+   ],
+   "notes": "",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "SD",
+   "name": "Specialized disclosure report (conflict minerals)",
+   "category": "periodic_report",
+   "filer": "US operating company",
+   "cadence": "annual (May)",
+   "contents": "Conflict minerals due diligence; exhibit holds the report.",
+   "substance_in": "exhibit",
+   "format": "html",
+   "answers": [
+    "conflict minerals"
+   ],
+   "read_with": [
+    "list_documents"
+   ],
+   "notes": "",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "10-D",
+   "name": "Asset-backed issuer distribution report",
+   "category": "abs",
+   "filer": "ABS issuer",
+   "cadence": "monthly/quarterly",
+   "contents": "Distribution and pool performance data for securitisations.",
+   "substance_in": "exhibits",
+   "format": "html/xml",
+   "answers": [
+    "ABS pool performance",
+    "securitization distributions"
+   ],
+   "read_with": [
+    "list_documents"
+   ],
+   "notes": "",
+   "variants": [
+    "ABS-15G",
+    "ABS-EE"
+   ],
+   "tested": false
+  },
+  {
+   "form": "ARS",
+   "name": "Annual report to shareholders (glossy)",
+   "category": "periodic_report",
+   "filer": "US operating company",
+   "cadence": "annual",
+   "contents": "The printed annual report sent with the proxy; often a PDF.",
+   "substance_in": "main document",
+   "format": "pdf/html",
+   "answers": [
+    "shareholder letter"
+   ],
+   "read_with": [
+    "list_documents"
+   ],
+   "notes": "",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "NT 10-K",
+   "name": "Notice of late filing",
+   "category": "periodic_report",
+   "filer": "US operating company",
+   "cadence": "event",
+   "contents": "Why the 10-K or 10-Q is late and when it is expected; sometimes a preliminary results estimate.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "late filing",
+    "delayed annual report",
+    "restatement warning"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "",
+   "variants": [
+    "NT 10-Q",
+    "NT 20-F"
+   ],
+   "tested": false
+  },
+  {
+   "form": "15",
+   "name": "Certification of termination of registration",
+   "category": "registration",
+   "filer": "issuer",
+   "cadence": "event",
+   "contents": "Company is deregistering: going private, delisted, or acquired.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "deregistration",
+    "delisting",
+    "went private"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "",
+   "variants": [
+    "15-12B",
+    "15-12G",
+    "15-15D",
+    "25 (delisting notice)",
+    "25-NSE"
+   ],
+   "tested": false
+  },
+  {
+   "form": "10-12B",
+   "name": "Registration of securities (spin-off or direct listing)",
+   "category": "registration",
+   "filer": "company",
+   "cadence": "event",
+   "contents": "Information statement for a spin-off: the new company's business, financials, capital structure.",
+   "substance_in": "exhibit 99.1 (information statement)",
+   "format": "html",
+   "answers": [
+    "spin-off",
+    "direct listing",
+    "new public company"
+   ],
+   "read_with": [
+    "list_documents",
+    "find_in_document"
+   ],
+   "notes": "",
+   "variants": [
+    "10-12G",
+    "10-12B/A"
+   ],
+   "tested": false
+  },
+  {
+   "form": "8-A12B",
+   "name": "Registration of a class of securities on an exchange",
+   "category": "registration",
+   "filer": "company",
+   "cadence": "event",
+   "contents": "Short form registering shares for exchange listing.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "listing"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "",
+   "variants": [
+    "8-A12G"
+   ],
+   "tested": false
+  },
+  {
+   "form": "CORRESP",
+   "name": "Correspondence with the SEC staff",
+   "category": "sec_correspondence",
+   "filer": "company",
+   "cadence": "event (released after review closes)",
+   "contents": "Company's replies to SEC comment letters: explanations of accounting choices, non-GAAP use, segment reporting.",
+   "substance_in": "main document",
+   "format": "html/pdf",
+   "answers": [
+    "SEC comment letter",
+    "accounting dispute",
+    "SEC review"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "The staff's letters are form type UPLOAD.",
+   "variants": [
+    "UPLOAD"
+   ],
+   "tested": false
+  },
+  {
+   "form": "EFFECT",
+   "name": "Notice of effectiveness of a registration statement",
+   "category": "offering",
+   "filer": "SEC",
+   "cadence": "event",
+   "contents": "One line: the registration became effective on a date.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "when did the registration go effective"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "3",
+   "name": "Initial statement of beneficial ownership",
+   "category": "ownership",
+   "filer": "new officer, director or 10% holder",
+   "cadence": "event",
+   "contents": "Holdings on becoming an insider.",
+   "substance_in": "primary document",
+   "format": "xml",
+   "answers": [
+    "new insider holdings"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "",
+   "variants": [],
+   "tested": false
+  },
+  {
+   "form": "PX14A6G",
+   "name": "Shareholder proxy exempt solicitation",
+   "category": "proxy",
+   "filer": "activist shareholder",
+   "cadence": "event",
+   "contents": "A shareholder's letter urging a vote.",
+   "substance_in": "main document",
+   "format": "html",
+   "answers": [
+    "activist letter",
+    "vote no campaign"
+   ],
+   "read_with": [
+    "read_document"
+   ],
+   "notes": "",
+   "variants": [],
+   "tested": false
+  }
+ ],
+ "tail": {
+  "1": "Application to register or exempt as a national securities exchange",
+  "1-A": "Regulation A offering statement",
+  "1-E": "Notification under Regulation E",
+  "1-K": "Annual report under Regulation A",
+  "1-N": "Notice of registration as an exchange for security futures",
+  "1-SA": "Semiannual report under Regulation A",
+  "1-U": "Current report under Regulation A",
+  "1-Z": "Exit report under Regulation A",
+  "10": "Registration of securities under Section 12(b) or 12(g)",
+  "10-M": "Appointment of agent for service by a non-resident broker-dealer general partner",
+  "12b-25": "Notification of late filing (filed as NT 10-K / NT 10-Q)",
+  "13H": "Large trader information",
+  "15F": "Foreign private issuer termination of registration",
+  "17-H": "Broker-dealer risk assessment",
+  "18": "Registration for foreign governments",
+  "18-K": "Annual report for foreign governments",
+  "19b-4": "Proposed rule change by a self-regulatory organization",
+  "19b-7": "Proposed rule change by a self-regulatory organization",
+  "2-E": "Report of sales under Regulation E",
+  "24F-2": "Annual notice of securities sold by funds",
+  "25": "Notification of removal from listing",
+  "40-F": "Annual report of certain Canadian issuers",
+  "5": "Annual statement of changes in beneficial ownership",
+  "7-M": "Appointment of agent for service (individual)",
+  "8-A": "Registration of a class of securities",
+  "8-M": "Appointment of agent for service (corporate)",
+  "9-M": "Appointment of agent for service (partnership)",
+  "ABS DD-15E": "Third-party due diligence certification for ABS",
+  "ABS-15G": "Asset-backed securitizer report",
+  "ABS-EE": "Electronic exhibits for asset-backed securities",
+  "ADV": "Investment adviser registration (Form ADV)",
+  "ADV-E": "Adviser custody accounting certificate",
+  "ADV-H": "Adviser hardship exemption",
+  "ADV-NR": "Adviser non-resident agent appointment",
+  "ADV-W": "Adviser withdrawal",
+  "ATS": "Alternative trading system reports",
+  "ATS-N": "NMS stock ATS filing",
+  "ATS-R": "Quarterly ATS activity report",
+  "BD": "Broker-dealer registration",
+  "BD-N": "Broker-dealer security futures notice",
+  "BDW": "Broker-dealer withdrawal",
+  "C": "Crowdfunding offering statement (Form C)",
+  "CA-1": "Clearing agency registration",
+  "CB": "Cross-border tender or rights offer notice",
+  "CFPORTAL": "Funding portal registration",
+  "CRS": "Customer relationship summary",
+  "CUSTODY": "Broker-dealer custody form",
+  "F-1": "Registration statement, foreign private issuer",
+  "F-10": "Registration statement, Canadian issuer",
+  "F-3": "Shelf registration, foreign private issuer",
+  "F-4": "Business combination registration, foreign private issuer",
+  "F-6": "Registration of ADRs",
+  "F-7": "Canadian rights offering registration",
+  "F-8": "Canadian exchange offer registration",
+  "F-80": "Canadian exchange offer registration (alternate)",
+  "F-N": "Agent for service, foreign banks and insurers",
+  "F-X": "Agent for service and undertaking",
+  "ID": "EDGAR access codes application",
+  "MA": "Municipal advisor registration",
+  "MA-I": "Municipal advisory natural persons",
+  "MA-NR": "Municipal advisor non-resident agent",
+  "MA-W": "Municipal advisor withdrawal",
+  "MSD": "Municipal securities dealer registration",
+  "MSDW": "Municipal securities dealer withdrawal",
+  "N-14": "Fund merger registration",
+  "N-17D-1": "SBIC report",
+  "N-17f-1": "Fund custody accounting certificate",
+  "N-17f-2": "Fund custody accounting certificate",
+  "N-18f-1": "Fund election under Rule 18f-1",
+  "N-1A": "Open-end fund / ETF registration",
+  "N-23c-3": "Interval fund repurchase offer notice",
+  "N-27D-1": "Segregated trust account accounting",
+  "N-3": "Separate account registration (management company)",
+  "N-4": "Separate account registration (unit investment trust)",
+  "N-5": "SBIC registration",
+  "N-54A": "BDC election",
+  "N-54C": "BDC election withdrawal",
+  "N-6": "Variable life separate account registration",
+  "N-6EI-1": "Exemption claim under Rule 6e-2/6e-3(T)",
+  "N-6F": "Notice of intent to elect BDC status",
+  "N-8A": "Notification of fund registration",
+  "N-8B-2": "Unit investment trust registration",
+  "N-8B-4": "Face-amount certificate company registration",
+  "N-8F": "Fund deregistration application",
+  "N-CR": "Money market fund material event report",
+  "N-MFP": "Monthly money market fund holdings",
+  "N-RN": "Fund current report (liquidity, swing pricing)",
+  "NRSRO": "Credit rating agency registration",
+  "PF": "Private fund adviser report (Form PF, not public)",
+  "PILOT": "Pilot trading system reports",
+  "R31": "Section 31 fee report",
+  "S-11": "Registration of real estate company securities",
+  "S-20": "Registration statement (standardized options)",
+  "S-6": "Unit investment trust registration",
+  "S-8": "Employee plan offering registration",
+  "SBSE": "Security-based swap dealer registration",
+  "SBSE-A": "SBS dealer registration (CFTC-registered)",
+  "SBSE-BD": "SBS dealer registration (broker-dealer)",
+  "SBSE-C": "SBS dealer certifications",
+  "SBSE-W": "SBS dealer withdrawal",
+  "SBSEF": "SBS execution facility registration",
+  "SCI": "Systems compliance and integrity",
+  "SDR": "SBS data repository registration",
+  "SE": "Paper-format exhibits",
+  "SF-1": "ABS registration statement",
+  "SF-3": "ABS shelf registration",
+  "SIP": "Securities information processor registration",
+  "T-1": "Trustee eligibility (corporate)",
+  "T-2": "Trustee eligibility (individual)",
+  "T-3": "Indenture qualification",
+  "T-4": "Trust Indenture Act exemption",
+  "T-6": "Foreign trustee eligibility",
+  "TA-1": "Transfer agent registration",
+  "TA-2": "Transfer agent activity report",
+  "TA-W": "Transfer agent withdrawal",
+  "TCR": "Tip, complaint or referral",
+  "TH": "Temporary hardship exemption",
+  "WB-APP": "Whistleblower award application",
+  "X-17A-19": "Broker-dealer membership change",
+  "X-17A-5": "FOCUS report (broker-dealer financial report)",
+  "X-17F-1A": "Missing or stolen securities report",
+  "SC 14D9": "Target's response to a tender offer",
+  "SC 13E3": "Going-private transaction statement",
+  "DEFA14A": "Additional proxy materials",
+  "PRE 14A": "Preliminary proxy statement",
+  "DEF 14C": "Definitive information statement",
+  "485BPOS": "Post-effective amendment to a fund registration (open-end)",
+  "485APOS": "Post-effective amendment (open-end, with changes)",
+  "497": "Fund prospectus or supplement",
+  "497K": "Fund summary prospectus",
+  "N-MFP2": "Monthly money market fund holdings (current form)",
+  "40-17G": "Fund fidelity bond",
+  "40-APP": "Application for an order under the Investment Company Act",
+  "POS AM": "Post-effective amendment to a registration statement",
+  "S-3ASR": "Automatic shelf registration",
+  "S-8 POS": "Post-effective amendment to S-8",
+  "RW": "Registration withdrawal request",
+  "AW": "Amendment withdrawal",
+  "IRANNOTICE": "Notice of Iran-related disclosure",
+  "NO ACT": "No-action letter request",
+  "CERT": "Exchange certification of listing",
+  "REVOKED": "Registration revoked",
+  "20FR12B": "Registration of a foreign private issuer under 12(b)",
+  "10-KT": "Transition-period annual report",
+  "10-QT": "Transition-period quarterly report",
+  "N-CSRS": "Semi-annual shareholder report of a registered fund",
+  "NPORT-EX": "Schedule of investments attached to NPORT-P",
+  "13F-NT": "Notice that 13F holdings are reported by another manager",
+  "DEFC14A": "Definitive proxy, contested",
+  "DFAN14A": "Contested proxy, non-management"
+ }
+}
